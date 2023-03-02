@@ -17,9 +17,10 @@ namespace aspnetserver.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Prodotto>>> GetProdotti()
+        public async Task<ActionResult<List<Prodotto>>> GetProdotto()
         {
-            return Ok(await context.Prodotti.ToListAsync());
+            return Ok(await context.Prodotto.ToListAsync());
         }
+
     }
 }

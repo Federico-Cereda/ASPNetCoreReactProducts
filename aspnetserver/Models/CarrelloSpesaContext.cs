@@ -15,9 +15,9 @@ public partial class CarrelloSpesaContext : DbContext
     {
     }
 
-    public virtual DbSet<Marca> Marche { get; set; }
+    public virtual DbSet<Marca> Marca { get; set; }
 
-    public virtual DbSet<Prodotto> Prodotti { get; set; }
+    public virtual DbSet<Prodotto> Prodotto { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -27,20 +27,25 @@ public partial class CarrelloSpesaContext : DbContext
     {
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK_dbo.Marche");
+            entity.HasKey(e => e.Id).HasName("PK_dbo.Marca");
 
-            entity.ToTable("Marche");
+            entity.ToTable("Marca");
+
+            entity.Property(e => e.Nome).HasMaxLength(256);
         });
 
         modelBuilder.Entity<Prodotto>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK_dbo.Prodotti");
+            entity.HasKey(e => e.Id).HasName("PK_dbo.Prodotto");
 
-            entity.ToTable("Prodotti");
+            entity.ToTable("Prodotto");
 
-            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Prodotti)
+            entity.Property(e => e.Nome).HasMaxLength(512);
+            entity.Property(e => e.Prezzo).HasColumnType("smallmoney");
+
+            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Prodotto)
                 .HasForeignKey(d => d.IdMarca)
-                .HasConstraintName("FK_Prodotti_Marche");
+                .HasConstraintName("FK_Prodotto_Marca");
         });
 
         OnModelCreatingPartial(modelBuilder);

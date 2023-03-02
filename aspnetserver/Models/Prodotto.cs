@@ -9,9 +9,9 @@ public partial class Prodotto
 
     public string Nome { get; set; } = null!;
 
-    public string Prezzo { get; set; } = null!;
+    public decimal? Prezzo { get; set; }
 
-    public string Peso { get; set; } = null!;
+    public double? Peso { get; set; }
 
     public int? IdMarca { get; set; }
 
