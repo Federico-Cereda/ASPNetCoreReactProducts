@@ -1,7 +1,7 @@
 ﻿using aspnetserver.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace aspnetserver.Repository
+namespace aspnetserver.Repositories
 {
     public class ProdottoRepository : IProdottoRepository
     {
