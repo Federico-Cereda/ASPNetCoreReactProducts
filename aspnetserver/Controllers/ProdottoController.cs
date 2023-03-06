@@ -1,5 +1,6 @@
 ﻿using aspnetserver.Models;
 using aspnetserver.Repositories;
+using aspnetserver.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetserver.Controllers
@@ -8,20 +9,17 @@ namespace aspnetserver.Controllers
     [ApiController]
     public class ProdottoController : ControllerBase
     {
-        private readonly CarrelloSpesaContext context;
-        private readonly IProdottoRepository prodottoRepository;
+        private readonly IProdottoService _prodottoService;
 
-        public ProdottoController(CarrelloSpesaContext context, IProdottoRepository prodottoRepository)
+        public ProdottoController(IProdottoService prodottoService)
         {
-            this.context = context;
-            this.prodottoRepository = prodottoRepository;
+            _prodottoService = prodottoService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Prodotto>>> GetProdotto()
+        public async Task<List<Prodotto>> GetProdotto()
         {
-            //return Ok(await context.Prodotto.ToListAsync());
-            return Ok(await prodottoRepository.Get());
+            return await _prodottoService.Get();
         }
 
     }
