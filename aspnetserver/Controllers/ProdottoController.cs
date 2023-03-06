@@ -1,8 +1,6 @@
 ﻿using aspnetserver.Models;
 using aspnetserver.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace aspnetserver.Controllers
 {

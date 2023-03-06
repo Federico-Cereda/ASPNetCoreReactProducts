@@ -1,8 +1,8 @@
 ﻿using aspnetserver.Models;
-using Microsoft.AspNetCore.Mvc;
+using aspnetserver.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace aspnetserver.Services
+namespace aspnetserver.Repository
 {
     public class ProdottoRepository : IProdottoRepository
     {
@@ -13,7 +13,7 @@ namespace aspnetserver.Services
             this.context = context;
         }
 
-        public async Task<ActionResult<List<Prodotto>>> Get()
+        public async Task<List<Prodotto>> Get()
         {
             return await context.Prodotto.ToListAsync();
         }
