@@ -1,6 +1,6 @@
 ﻿using aspnetserver.Models;
 
-namespace aspnetserver.Services
+namespace aspnetserver.Repository
 {
     public interface IProdottoRepository
     {

@@ -1,5 +1,5 @@
 ﻿using aspnetserver.Models;
-using aspnetserver.Services;
+using aspnetserver.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetserver.Controllers

@@ -1,6 +1,5 @@
 using aspnetserver.Models;
 using aspnetserver.Repository;
-using aspnetserver.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
