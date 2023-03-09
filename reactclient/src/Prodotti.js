@@ -31,13 +31,13 @@ export default function Prodotti(props) {
                         <tr key={prodotto.id}>
                             <th scope="row">{prodotto.id}</th>
                             <td>{prodotto.nome}</td>
-                            <td>{prodotto.prezzo}</td>
-                            <td>{prodotto.peso}</td>
+                            <td>{prodotto.prezzo} €</td>
+                            <td>{prodotto.peso} g</td>
                             <td>{prodotto.idMarca}</td>
                             <td>
-                                <button className="btn btn-primary btn-lg">Detagli</button>
-                                <button className="btn btn-secondary btn-lg mx-3 my-3">Aggiorna</button>
-                                <button className="btn btn-dark btn-lg">Elimina</button>
+                                <button className="btn btn-primary btn-sm">Detagli</button>
+                                <button className="btn btn-secondary btn-sm mx-1 my-1">Aggiorna</button>
+                                <button className="btn btn-dark btn-sm">Elimina</button>
                             </td>
                         </tr>
                     ))}
