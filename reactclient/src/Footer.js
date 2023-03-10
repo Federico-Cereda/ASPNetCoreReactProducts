@@ -19,7 +19,12 @@ export default function Footer() {
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="/" class="text-white">Prodotti</a>
+                    <a href="prodotti.html" class="text-white">Prodotti</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled mb-0 mx-1 d-inline-block">
+                <li>
+                    <a href="marche.html" class="text-white">Marche</a>
                 </li>
             </ul>
 

@@ -12,8 +12,13 @@ export default function Header() {
                         </a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link font-weight-bolder text-uppercase" href='/'>
+                        <a class="nav-link font-weight-bolder text-uppercase" href='prodotti.html'>
                             Prodotti
+                        </a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link font-weight-bolder text-uppercase" href='marche.html'>
+                            Marche
                         </a>
                     </li>
                 </ul>
