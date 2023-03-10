@@ -12,9 +12,14 @@ export default function Footer() {
                 </a>
             </section>
 
-            <ul class="list-unstyled mb-0">
+            <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="/" class="text-white">Lista Prodotti</a>
+                    <a href="/" class="text-white">Home</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled mb-0 mx-1 d-inline-block">
+                <li>
+                    <a href="/" class="text-white">Prodotti</a>
                 </li>
             </ul>
 

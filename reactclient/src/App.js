@@ -8,7 +8,7 @@ export default function App() {
     <div>
       <Header />
 
-      <div className="conteiner">
+      <div className="container">
         <div className="row min-vh-100">
           <div className="col d-flex flex-column justify-content-center align-items-center">
             <h1 className='mb-5'>Lista Prodotti</h1>

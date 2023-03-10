@@ -8,7 +8,12 @@ export default function Header() {
                 <ul className='navbar-nav'>
                     <li class="nav-item mx-3">
                         <a class="nav-link font-weight-bolder text-uppercase" href='/'>
-                            Lista prodotti
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link font-weight-bolder text-uppercase" href='/'>
+                            Prodotti
                         </a>
                     </li>
                 </ul>
