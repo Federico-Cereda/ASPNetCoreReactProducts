@@ -22,13 +22,13 @@ export default function Footer() {
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
                     {/* <a href="/prodotti" class="text-white">Prodotti</a> */}
-                    <Link to="/prodotti">Prodotti</Link>
+                    {/* <Link to="/prodotti">Prodotti</Link> */}
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
                     {/* <a href="/marche" class="text-white">Marche</a> */}
-                    <Link to="/marche">Marche</Link>
+                    {/* <Link to="/marche">Marche</Link> */}
                 </li>
             </ul>
 
