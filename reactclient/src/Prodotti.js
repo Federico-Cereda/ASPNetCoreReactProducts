@@ -4,6 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import TabellaProdotti from './TabellaProdotti';
 
-export default function prodotti() {
+export default function Prodotti() {
     return (<TabellaProdotti />);
 };

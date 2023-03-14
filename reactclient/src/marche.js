@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // components takes precedence over default styles.
 import React from 'react';
 
-export default function marche() {
+export default function Marche() {
     return (
         <div className="container">
             <div className="row min-vh-100">

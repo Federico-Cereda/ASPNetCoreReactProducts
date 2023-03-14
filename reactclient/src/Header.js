@@ -11,10 +11,10 @@ export default function Header() {
                         <NavLink to="/" className="nav-link font-weight-bolder text-uppercase" >Home</NavLink>
                     </li>
                     <li class="nav-item mx-3">
-                        <NavLink to="/prodotti" className="nav-link font-weight-bolder text-uppercase" >Prodotti</NavLink>
+                        <NavLink to="/Prodotti" className="nav-link font-weight-bolder text-uppercase" >Prodotti</NavLink>
                     </li>
                     <li class="nav-item mx-3">
-                        <NavLink to="/marche" className="nav-link font-weight-bolder text-uppercase" >Marche</NavLink>
+                        <NavLink to="/Marche" className="nav-link font-weight-bolder text-uppercase" >Marche</NavLink>
                     </li>
                 </ul>
             </nav>

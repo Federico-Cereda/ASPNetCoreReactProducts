@@ -20,12 +20,12 @@ export default function Footer() {
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <NavLink to="/prodotti" className="nav-link font-weight-bolder text-uppercase text-white" >Prodotti</NavLink>
+                    <NavLink to="/Prodotti" className="nav-link font-weight-bolder text-uppercase text-white" >Prodotti</NavLink>
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <NavLink to="/marche" className="nav-link font-weight-bolder text-uppercase text-white" >Marche</NavLink>
+                    <NavLink to="/Marche" className="nav-link font-weight-bolder text-uppercase text-white" >Marche</NavLink>
                 </li>
             </ul>
 
