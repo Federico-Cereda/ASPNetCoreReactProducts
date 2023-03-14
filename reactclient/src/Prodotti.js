@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // components takes precedence over default styles.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppProdotti from './AppProdotti';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('rootProdotti'));
-root.render(<AppProdotti />);
+root.render(<App />);

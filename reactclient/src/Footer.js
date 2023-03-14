@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -14,17 +15,20 @@ export default function Footer() {
 
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="/" class="text-white">Home</a>
+                    {/* <a href="/" class="text-white">Home</a> */}
+                    <Link to="/">Home</Link>
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="prodotti.html" class="text-white">Prodotti</a>
+                    {/* <a href="/prodotti" class="text-white">Prodotti</a> */}
+                    <Link to="/prodotti">Prodotti</Link>
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="marche.html" class="text-white">Marche</a>
+                    {/* <a href="/marche" class="text-white">Marche</a> */}
+                    <Link to="/marche">Marche</Link>
                 </li>
             </ul>
 
