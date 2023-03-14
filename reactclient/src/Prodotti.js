@@ -4,11 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import TabellaProdotti from './TabellaProdotti';
 
-// const root = ReactDOM.createRoot(document.getElementById('rootProdotti'));
-// root.render(<App />);
-
-const prodotti = () => {
+export default function prodotti() {
     return (<TabellaProdotti />);
 };
-
-export default prodotti;

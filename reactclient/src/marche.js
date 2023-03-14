@@ -3,11 +3,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 // components takes precedence over default styles.
 import React from 'react';
 
-// const root = ReactDOM.createRoot(document.getElementById('rootMarche'));
-// root.render(<AppMarche />);
-
-const marche = () => {
-    return (<div>Marche</div>);
+export default function marche() {
+    return (
+        <div className="container">
+            <div className="row min-vh-100">
+                <div className="col d-flex flex-column justify-content-center align-items-center">
+                    <h1 className='mb-5'>Marche</h1>
+                </div>
+            </div>
+        </div>
+    );
 };
-
-export default marche;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -15,20 +15,17 @@ export default function Footer() {
 
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    {/* <a href="/" class="text-white">Home</a> */}
-                    <Link to="/">Home</Link>
+                    <NavLink to="/" className="nav-link font-weight-bolder text-uppercase text-white" >Home</NavLink>
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    {/* <a href="/prodotti" class="text-white">Prodotti</a> */}
-                    {/* <Link to="/prodotti">Prodotti</Link> */}
+                    <NavLink to="/prodotti" className="nav-link font-weight-bolder text-uppercase text-white" >Prodotti</NavLink>
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    {/* <a href="/marche" class="text-white">Marche</a> */}
-                    {/* <Link to="/marche">Marche</Link> */}
+                    <NavLink to="/marche" className="nav-link font-weight-bolder text-uppercase text-white" >Marche</NavLink>
                 </li>
             </ul>
 
