@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -14,12 +15,17 @@ export default function Footer() {
 
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="/" class="text-white">Home</a>
+                    <NavLink to="/" className="nav-link font-weight-bolder text-uppercase text-white" >Home</NavLink>
                 </li>
             </ul>
             <ul class="list-unstyled mb-0 mx-1 d-inline-block">
                 <li>
-                    <a href="/" class="text-white">Prodotti</a>
+                    <NavLink to="/Prodotti" className="nav-link font-weight-bolder text-uppercase text-white" >Prodotti</NavLink>
+                </li>
+            </ul>
+            <ul class="list-unstyled mb-0 mx-1 d-inline-block">
+                <li>
+                    <NavLink to="/Marche" className="nav-link font-weight-bolder text-uppercase text-white" >Marche</NavLink>
                 </li>
             </ul>
 

@@ -1,24 +1,23 @@
 import React from 'react';
-import Prodotti from './Prodotti';
 import Header from './Header';
 import Footer from './Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import Prodotti from './Prodotti';
+import Marche from './Marche';
 
 export default function App() {
   return (
-    <div>
-      <Header />
-
-      <div className="container">
-        <div className="row min-vh-100">
-          <div className="col d-flex flex-column justify-content-center align-items-center">
-            <h1 className='mb-5'>Lista Prodotti</h1>
-            <button className="btn btn-success btn-sm">Aggiungi nuovo prodotto</button>
-            <Prodotti />
-          </div>
-        </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/Prodotti" element={<Prodotti />}></Route>
+          <Route path="/Marche" element={<Marche />}></Route>
+        </Routes>
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
