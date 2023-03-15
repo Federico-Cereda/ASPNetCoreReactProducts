@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 
-export default function TabellaProdotti(props) {
+export default function TabellaMarche(props) {
 
-    const [prodotti, setProdotti] = useState([])
+    const [marche, setMarche] = useState([])
     useEffect(() => {
-        fetch('https://localhost:7273/api/Prodotto', {
+        fetch('https://localhost:7273/api/Marca', {
             method: 'GET'
         })
             .then(response => response.json())
             .then(result => {
-                setProdotti(result);
+                setMarche(result);
             })
-    }, []);
+    }, [])
 
     return (
         <div className="table-responsive mt-5">
@@ -20,20 +20,14 @@ export default function TabellaProdotti(props) {
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Prezzo</th>
-                        <th scope="col">Peso</th>
-                        <th scope="col">Marca</th>
                         <th scope="col">CRUD Operations</th>
                     </tr>
                 </thead>
                 <tbody className="align-middle">
-                    {prodotti.map((prodotto) => (
-                        <tr key={prodotto.id}>
-                            <th scope="row">{prodotto.id}</th>
-                            <td>{prodotto.nome}</td>
-                            <td>{prodotto.prezzo} €</td>
-                            <td>{prodotto.peso} g</td>
-                            <td>{prodotto.idMarca}</td>
+                    {marche.map((marca) => (
+                        <tr key={marca.id}>
+                            <th scope="row">{marca.id}</th>
+                            <td>{marca.nome}</td>
                             <td>
                                 <button className="btn btn-primary btn-sm">Detagli</button>
                                 <button className="btn btn-secondary btn-sm mx-1 my-1">Aggiorna</button>
