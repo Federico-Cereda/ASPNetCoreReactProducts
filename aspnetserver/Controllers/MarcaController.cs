@@ -12,13 +12,13 @@ namespace aspnetserver.Controllers
 
         public MarcaController(IMarcaService marcaService)
         {
-            this._marcaService = marcaService;
+            _marcaService = marcaService;
         }
 
         [HttpGet]
-        public async Task<List<Marca>> GetMarca()
+        public async Task<List<Marca>> GetMarche()
         {
-            return await _marcaService.Get();
+            return await _marcaService.GetMarche();
         }
 
     }

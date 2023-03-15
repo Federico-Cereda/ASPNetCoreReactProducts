@@ -9,10 +9,10 @@ namespace aspnetserver.Repositories
 
         public ProdottoRepository(CarrelloSpesaContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
-        public async Task<List<Prodotto>> Get()
+        public async Task<List<Prodotto>> GetProdotti()
         {
             return await _context.Prodotto.ToListAsync();
         }

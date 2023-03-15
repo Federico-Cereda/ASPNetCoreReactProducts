@@ -9,10 +9,10 @@ namespace aspnetserver.Repositories
 
         public MarcaRepository(CarrelloSpesaContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
-        public async Task<List<Marca>> Get()
+        public async Task<List<Marca>> GetMarche()
         {
             return await _context.Marca.ToListAsync();
         }

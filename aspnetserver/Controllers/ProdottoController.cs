@@ -12,13 +12,13 @@ namespace aspnetserver.Controllers
 
         public ProdottoController(IProdottoService prodottoService)
         {
-            this._prodottoService = prodottoService;
+            _prodottoService = prodottoService;
         }
 
         [HttpGet]
-        public async Task<List<Prodotto>> GetProdotto()
+        public async Task<List<Prodotto>> GetProdotti()
         {
-            return await _prodottoService.Get();
+            return await _prodottoService.GetProdotti();
         }
 
     }

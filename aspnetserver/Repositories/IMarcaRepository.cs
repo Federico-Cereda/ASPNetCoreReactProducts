@@ -4,7 +4,7 @@ namespace aspnetserver.Repositories
 {
     public interface IMarcaRepository
     {
-        Task<List<Marca>> Get();
+        Task<List<Marca>> GetMarche();
 
     }
 }

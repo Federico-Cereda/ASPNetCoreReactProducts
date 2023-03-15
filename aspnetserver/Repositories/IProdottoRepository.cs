@@ -4,7 +4,7 @@ namespace aspnetserver.Repositories
 {
     public interface IProdottoRepository
     {
-        Task<List<Prodotto>> Get();
+        Task<List<Prodotto>> GetProdotti();
 
     }
 }

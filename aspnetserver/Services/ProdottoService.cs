@@ -9,12 +9,12 @@ namespace aspnetserver.Services
 
         public ProdottoService(IProdottoRepository prodottoRepository)
         {
-            this._prodottoRepository = prodottoRepository;
+            _prodottoRepository = prodottoRepository;
         }
 
-        public async Task<List<Prodotto>> Get()
+        public async Task<List<Prodotto>> GetProdotti()
         {
-            return await _prodottoRepository.Get();
+            return await _prodottoRepository.GetProdotti();
         }
 
     }

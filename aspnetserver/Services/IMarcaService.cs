@@ -4,7 +4,7 @@ namespace aspnetserver.Services
 {
     public interface IMarcaService
     {
-        Task<List<Marca>> Get();
+        Task<List<Marca>> GetMarche();
 
     }
 }

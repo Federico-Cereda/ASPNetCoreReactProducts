@@ -9,12 +9,12 @@ namespace aspnetserver.Services
 
         public MarcaService(IMarcaRepository marcaRepository)
         {
-            this._marcaRepository = marcaRepository;
+            _marcaRepository = marcaRepository;
         }
 
-        public async Task<List<Marca>> Get()
+        public async Task<List<Marca>> GetMarche()
         {
-            return await _marcaRepository.Get();
+            return await _marcaRepository.GetMarche();
         }
 
     }
