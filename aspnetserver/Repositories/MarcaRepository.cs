@@ -3,19 +3,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace aspnetserver.Repositories
 {
-    public class ProdottoRepository : IProdottoRepository
+    public class MarcaRepository : IMarcaRepository
     {
         private readonly CarrelloSpesaContext _context;
 
-        public ProdottoRepository(CarrelloSpesaContext context)
+        public MarcaRepository(CarrelloSpesaContext context)
         {
             _context = context;
         }
 
-        public async Task<List<Prodotto>> GetProdotti()
+        public async Task<List<Marca>> GetMarche()
         {
-            return await _context.Prodotto.ToListAsync();
+            return await _context.Marca.ToListAsync();
         }
-
     }
 }

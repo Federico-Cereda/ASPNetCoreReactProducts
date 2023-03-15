@@ -1,5 +1,4 @@
 ﻿using aspnetserver.Models;
-using aspnetserver.Repositories;
 using aspnetserver.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +16,9 @@ namespace aspnetserver.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Prodotto>> GetProdotto()
+        public async Task<List<Prodotto>> GetProdotti()
         {
-            return await _prodottoService.Get();
+            return await _prodottoService.GetProdotti();
         }
 
     }

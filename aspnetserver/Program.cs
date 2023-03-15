@@ -23,9 +23,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CarrelloSpesaContext>();
-
 builder.Services.AddScoped<IProdottoRepository, ProdottoRepository>();
 builder.Services.AddScoped<IProdottoService, ProdottoService>();
+builder.Services.AddScoped<IMarcaRepository, MarcaRepository>();
+builder.Services.AddScoped<IMarcaService, MarcaService>();
 
 var app = builder.Build();
 

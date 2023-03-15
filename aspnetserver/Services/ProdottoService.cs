@@ -6,14 +6,15 @@ namespace aspnetserver.Services
     public class ProdottoService : IProdottoService
     {
         private readonly IProdottoRepository _prodottoRepository;
+
         public ProdottoService(IProdottoRepository prodottoRepository)
         {
             _prodottoRepository = prodottoRepository;
         }
 
-        public async Task<List<Prodotto>> Get()
+        public async Task<List<Prodotto>> GetProdotti()
         {
-            return await _prodottoRepository.Get();
+            return await _prodottoRepository.GetProdotti();
         }
 
     }

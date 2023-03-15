@@ -4,7 +4,7 @@ namespace aspnetserver.Services
 {
     public interface IProdottoService
     {
-        Task<List<Prodotto>> Get();
+        Task<List<Prodotto>> GetProdotti();
 
     }
 }
