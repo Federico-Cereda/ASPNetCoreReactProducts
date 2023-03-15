@@ -5,16 +5,16 @@ namespace aspnetserver.Services
 {
     public class MarcaService : IMarcaService
     {
-        private readonly IMarcaRepository marcaRepository;
+        private readonly IMarcaRepository _marcaRepository;
 
         public MarcaService(IMarcaRepository marcaRepository)
         {
-            this.marcaRepository = marcaRepository;
+            this._marcaRepository = marcaRepository;
         }
 
         public async Task<List<Marca>> Get()
         {
-            return await marcaRepository.Get();
+            return await _marcaRepository.Get();
         }
 
     }

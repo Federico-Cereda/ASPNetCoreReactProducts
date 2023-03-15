@@ -8,17 +8,17 @@ namespace aspnetserver.Controllers
     [ApiController]
     public class MarcaController : ControllerBase
     {
-        private readonly IMarcaService marcaService;
+        private readonly IMarcaService _marcaService;
 
         public MarcaController(IMarcaService marcaService)
         {
-            this.marcaService = marcaService;
+            this._marcaService = marcaService;
         }
 
         [HttpGet]
         public async Task<List<Marca>> GetMarca()
         {
-            return await marcaService.Get();
+            return await _marcaService.Get();
         }
 
     }

@@ -8,17 +8,17 @@ namespace aspnetserver.Controllers
     [ApiController]
     public class ProdottoController : ControllerBase
     {
-        private readonly IProdottoService prodottoService;
+        private readonly IProdottoService _prodottoService;
 
         public ProdottoController(IProdottoService prodottoService)
         {
-            this.prodottoService = prodottoService;
+            this._prodottoService = prodottoService;
         }
 
         [HttpGet]
         public async Task<List<Prodotto>> GetProdotto()
         {
-            return await prodottoService.Get();
+            return await _prodottoService.Get();
         }
 
     }

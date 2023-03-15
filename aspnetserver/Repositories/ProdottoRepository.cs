@@ -5,16 +5,16 @@ namespace aspnetserver.Repositories
 {
     public class ProdottoRepository : IProdottoRepository
     {
-        private readonly CarrelloSpesaContext context;
+        private readonly CarrelloSpesaContext _context;
 
         public ProdottoRepository(CarrelloSpesaContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public async Task<List<Prodotto>> Get()
         {
-            return await context.Prodotto.ToListAsync();
+            return await _context.Prodotto.ToListAsync();
         }
 
     }
