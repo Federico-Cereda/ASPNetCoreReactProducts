@@ -14,7 +14,16 @@ namespace aspnetserver.Repositories
 
         public async Task<List<Prodotto>> GetProdotti()
         {
-            return await _context.Prodotto.ToListAsync();
+            return await (from p in _context.Prodotto
+                          join m in _context.Marca on p.IdMarca equals m.Id
+                          select new Prodotto{
+                              Id = p.Id,
+                              Nome = p.Nome,
+                              Prezzo = p.Prezzo,
+                              Peso = p.Peso,
+                              IdMarca = p.IdMarca,
+                              IdMarcaNavigation = m
+                          }).ToListAsync();
         }
 
     }
