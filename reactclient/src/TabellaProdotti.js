@@ -33,7 +33,7 @@ export default function TabellaProdotti(props) {
                             <td>{prodotto.nome}</td>
                             <td>{prodotto.prezzo} €</td>
                             <td>{prodotto.peso} g</td>
-                            <td>{prodotto.idMarca}</td>
+                            <td>{prodotto.idMarcaNavigation.nome}</td>
                             <td>
                                 <button className="btn btn-primary btn-sm">Detagli</button>
                                 <button className="btn btn-secondary btn-sm mx-1 my-1">Aggiorna</button>
