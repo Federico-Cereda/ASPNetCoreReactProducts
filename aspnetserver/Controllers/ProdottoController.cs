@@ -21,5 +21,11 @@ namespace aspnetserver.Controllers
             return await _prodottoService.GetProdotti();
         }
 
+        [HttpPost]
+        public async Task PostProdotto(Prodotto prodotto)
+        {
+            await _prodottoService.PostProdotto(prodotto);
+        }
+
     }
 }
