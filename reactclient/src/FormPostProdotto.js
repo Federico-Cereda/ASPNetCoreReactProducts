@@ -1,14 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function FormPostProdotto(props) {
 
-    const Submit = (e) => {
-        e.preventDefault();
+    const [formData, setFormData] = useState([]);
 
-        const formData = new FormData();
+    const change = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const submit = (e) => {
+        e.preventDefault();
 
         const prodotto = {
             id: 0,
@@ -29,33 +36,43 @@ export default function FormPostProdotto(props) {
             .then(result => {
                 console.log(result);
             });
+
     };
 
     return (
         <form className='w-100 px-5'>
             <h1 className='mt-5'>Nuovo prodotto</h1>
 
-            <div className='mt-5'>
-                <label className='h3 form-label'>Nome prodotto</label>
-                <input value={formData.nome} name="nome" type="text" className='form-control' />
+            <div class="form-group row" className='mt-5'>
+                <label class="col-sm-2 col-form-label" className='h3 form-label'>Nome</label>
+                <div class="col-sm-10">
+                    <input class="form-control" value={formData.nome} name="nome" type="text" className='form-control' onChange={change} />
+                </div>
             </div>
 
-            <div className='mt-5'>
-                <label className='h3 form-label'>Prezzo prodotto</label>
-                <input value={formData.prezzo} name="prezzo" type="currency" className='form-control' />
+            <div class="form-group row" className='mt-5'>
+                <label class="col-sm-2 col-form-label" className='h3 form-label'>Prezzo</label>
+                <div class="col-sm-10">
+                    <input class="form-control" value={formData.prezzo} name="prezzo" type="currency" className='form-control' onChange={change} />
+                </div>
             </div>
 
-            <div className='mt-5'>
-                <label className='h3 form-label'>Peso prodotto</label>
-                <input value={formData.peso} name="peso" type="number" className='form-control' />
+            <div class="form-group row" className='mt-5'>
+                <label class="col-sm-2 col-form-label" className='h3 form-label'>Peso</label>
+                <div class="col-sm-10">
+                    <input class="form-control" value={formData.peso} name="peso" type="number" className='form-control' onChange={change} />
+                </div>
             </div>
 
-            <div className='mt-5'>
-                <label className='h3 form-label'>Marca prodotto</label>
-                <input value={formData.idMarca} name="idMarca" type="number" className='form-control' />
+            <div class="form-group row" className='mt-5'>
+                <label class="col-sm-2 col-form-label" className='h3 form-label'>Marca</label>
+                <div class="col-sm-10">
+                    <input class="form-control" value={formData.idMarca} name="idMarca" type="number" className='form-control' onChange={change} />
+                </div>
             </div>
-
-            <button onClick={Submit} className="btn btn-dark btn-lg w-100 mt-5">Aggiungere</button>
+            <div class="col-sm-10">
+                <button class="form-group row" onClick={submit} className="btn btn-dark btn-lg w-100 mt-5">Aggiungere</button>
+            </div>
         </form>
     )
 
