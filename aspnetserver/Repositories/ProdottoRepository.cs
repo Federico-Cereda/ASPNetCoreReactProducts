@@ -26,10 +26,18 @@ namespace aspnetserver.Repositories
                           }).ToListAsync();
         }
 
-        public async Task PostProdotto(Prodotto prodotto)
+        public async Task<bool> PostProdotto(Prodotto prodotto)
         {
-            await _context.Prodotto.AddAsync(prodotto);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.Prodotto.AddAsync(prodotto);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
     }

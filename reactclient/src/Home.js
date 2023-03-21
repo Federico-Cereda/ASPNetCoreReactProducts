@@ -8,7 +8,7 @@ export default function Home() {
         <div className="container">
             <div className="row min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-items-center">
-                    <h1 className='mb-5'>Benvenuti nella home</h1>
+                    <h1 className="mb-5">Benvenuti nella home</h1>
                     <p>Descrizione</p>
                 </div>
             </div>

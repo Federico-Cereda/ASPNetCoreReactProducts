@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from 'react';
 
-export default function TabellaMarche() {
+export default function TabellaProdotti() {
 
-    const [marche, setMarche] = useState([])
+    const [prodotti, setProdotti] = useState([])
     useEffect(() => {
-        fetch('https://localhost:7273/api/Marca', {
+        fetch('https://localhost:7273/api/Prodotto', {
             method: 'GET'
         })
             .then(response => response.json())
             .then(result => {
-                setMarche(result);
+                setProdotti(result);
             })
-    }, [])
+    }, []);
 
     return (
         <div class="text-center">
-            <h1 class="my-5">Lista Marche</h1>
-            <button className="btn btn-success btn-sm">Aggiungi nuova marca</button>
+            <h1 class="my-5">Lista Prodotti</h1>
+            <button className="btn btn-success btn-sm">Aggiungi nuovo prodotto</button>
             <div className="table-responsive mt-5">
                 <table className="table table-bordered border-dark">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nome</th>
+                            <th scope="col">Prezzo</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Marca</th>
                             <th scope="col">CRUD Operations</th>
                         </tr>
                     </thead>
                     <tbody className="align-middle">
-                        {marche.map((marca) => (
-                            <tr key={marca.id}>
-                                <th scope="row">{marca.id}</th>
-                                <td>{marca.nome}</td>
+                        {prodotti.map((prodotto) => (
+                            <tr key={prodotto.id}>
+                                <th scope="row">{prodotto.id}</th>
+                                <td>{prodotto.nome}</td>
+                                <td>{prodotto.prezzo} €</td>
+                                <td>{prodotto.peso} g</td>
+                                <td>{prodotto.idMarcaNavigation.nome}</td>
                                 <td>
                                     <button className="btn btn-primary btn-sm">Detagli</button>
                                     <button className="btn btn-secondary btn-sm mx-1 my-1">Modifica</button>

@@ -22,9 +22,18 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPost]
-        public async Task PostProdotto(Prodotto prodotto)
+        public async Task<IResult> PostProdotto(Prodotto prodotto)
         {
-            await _prodottoService.PostProdotto(prodotto);
+            bool createSuccessful = await _prodottoService.PostProdotto(prodotto);
+
+            if (createSuccessful)
+            {
+                return Results.Ok("Create successful.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
         }
 
     }

@@ -9,8 +9,6 @@ export default function Marche() {
         <div className="container">
             <div className="row min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-items-center">
-                    <h1 className='mb-5'>Lista Marche</h1>
-                    <button className="btn btn-success btn-sm">Aggiungi nuova marca</button>
                     <TabellaMarche />
                 </div>
             </div>
