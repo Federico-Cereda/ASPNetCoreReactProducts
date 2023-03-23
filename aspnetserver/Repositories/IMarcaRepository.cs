@@ -6,5 +6,7 @@ namespace aspnetserver.Repositories
     {
         Task<List<Marca>> GetMarche();
 
+        Task<bool> PostMarca(Marca marca);
+
     }
 }

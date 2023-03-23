@@ -21,5 +21,20 @@ namespace aspnetserver.Controllers
             return await _marcaService.GetMarche();
         }
 
+        [HttpPost]
+        public async Task<IResult> PostMarca(Marca marca)
+        {
+            bool createSuccessful = await _marcaService.PostMarca(marca);
+
+            if (createSuccessful)
+            {
+                return Results.Ok("Create successful.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }

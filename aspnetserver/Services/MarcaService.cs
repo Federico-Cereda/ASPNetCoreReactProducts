@@ -17,5 +17,10 @@ namespace aspnetserver.Services
             return await _marcaRepository.GetMarche();
         }
 
+        public async Task<bool> PostMarca(Marca marca)
+        {
+            return await _marcaRepository.PostMarca(marca);
+        }
+
     }
 }
