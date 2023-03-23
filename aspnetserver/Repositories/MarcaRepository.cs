@@ -16,5 +16,20 @@ namespace aspnetserver.Repositories
         {
             return await _context.Marca.ToListAsync();
         }
+
+        public async Task<bool> PostMarca(Marca marca)
+        {
+            try
+            {
+                await _context.Marca.AddAsync(marca);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
