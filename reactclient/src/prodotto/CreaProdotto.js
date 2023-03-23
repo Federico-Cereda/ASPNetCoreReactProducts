@@ -5,7 +5,21 @@ import React, { useState } from 'react';
 
 export default function CreaProdotto() {
 
-    const [formData, setFormData] = useState([]);
+    const initialFormData = Object.freeze({
+        nome: '',
+        prezzo: '',
+        peso: '',
+        idMarca: '',
+    });
+
+    const [formData, setFormData] = useState(initialFormData);
+
+    const onCloseModal = (e) => {
+        setFormData({
+            ...initialFormData,
+            [e.target.name]: null,
+        });
+    };
 
     const change = (e) => {
         setFormData({
@@ -35,6 +49,7 @@ export default function CreaProdotto() {
             .then(response => response.json())
             .then(responseFromServer => {
                 console.log(responseFromServer);
+                window.location.reload();
             })
             .catch((error) => {
                 console.log(error);
@@ -44,47 +59,64 @@ export default function CreaProdotto() {
     };
 
     return (
-        <form class="w-100 px-5">
+        <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
 
-            <div class="form-group row mt-4 text-center">
-                <h1>Nuovo prodotto</h1>
-            </div>
+                <div class="modal-content">
 
-            <div class="form-group row mt-4">
-                <label class="h3 col-sm-2 col-form-label">Nome</label>
-                <div class="col-sm-5">
-                    <input class="form-control" value={formData.nome} name="nome" type="text" onChange={change} />
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel">Nuovo prodotto</h5>
+
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" onClick={onCloseModal} >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+                        <form class="w-100 px-3">
+
+                            <div class="form-group row mt-4">
+                                <label class="h3 col-sm-2 col-form-label">Nome</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" value={formData.nome} name="nome" type="text" onChange={change} />
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-4">
+                                <label class="h3 col-sm-2 col-form-label">Prezzo</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" value={formData.prezzo} name="prezzo" type="currency" onChange={change} />
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-4">
+                                <label class="h3 col-sm-2 col-form-label">Peso</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" value={formData.peso} name="peso" type="number" onChange={change} />
+                                </div>
+                            </div>
+
+                            <div class="form-group row my-4">
+                                <label class="h3 col-sm-2 col-form-label">Marca</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" value={formData.idMarca} name="idMarca" type="number" onChange={change} />
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" onClick={submit} class="close btn btn-success" data-bs-dismiss="modal" aria-label="Close">
+                            Aggiungi
+                        </button>
+                    </div>
+
                 </div>
             </div>
-
-            <div class="form-group row mt-4">
-                <label class="h3 col-sm-2 col-form-label">Prezzo</label>
-                <div class="col-sm-5">
-                    <input class="form-control" value={formData.prezzo} name="prezzo" type="currency" onChange={change} />
-                </div>
-            </div>
-
-            <div class="form-group row mt-4">
-                <label class="h3 col-sm-2 col-form-label">Peso</label>
-                <div class="col-sm-5">
-                    <input class="form-control" value={formData.peso} name="peso" type="number" onChange={change} />
-                </div>
-            </div>
-
-            <div class="form-group row mt-4">
-                <label class="h3 col-sm-2 col-form-label">Marca</label>
-                <div class="col-sm-5">
-                    <input class="form-control" value={formData.idMarca} name="idMarca" type="number" onChange={change} />
-                </div>
-            </div>
-
-            <div class="form-group row  mt-4">
-                <div class="col-sm-10">
-                    <button type="submit" onClick={submit} class="btn btn-dark">Aggiungere</button>
-                </div>
-            </div>
-
-        </form>
+        </div>
     )
 
 }
