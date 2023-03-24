@@ -1,7 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
+
     return (
         <footer class="bg-dark text-center text-white">
 
@@ -31,4 +35,5 @@ export default function Footer() {
 
         </footer>
     )
+
 }

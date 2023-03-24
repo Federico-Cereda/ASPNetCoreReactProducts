@@ -19,7 +19,7 @@ export default function TabellaProdotti() {
     return (
         <div class="text-center">
             <h1 class="my-5">Lista Prodotti</h1>
-            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Aggiungi nuovo prodotto</button>
+            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#creaProdottoModal">Aggiungi nuovo prodotto</button>
             <div className="table-responsive mt-5">
                 <table className="table table-bordered border-dark">
                     <thead>
