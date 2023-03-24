@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function CreaProdotto() {
 
@@ -58,6 +58,17 @@ export default function CreaProdotto() {
 
     };
 
+    const [marche, setMarche] = useState([]);
+    useEffect(() => {
+        fetch('https://localhost:7273/api/Marca', {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(result => {
+                setMarche(result);
+            })
+    }, [])
+
     return (
         <div class="modal fade" id="creaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -98,7 +109,14 @@ export default function CreaProdotto() {
                             <div class="form-group row my-4">
                                 <label class="h3 col-sm-2 col-form-label">Marca</label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" value={formData.idMarca} name="idMarca" type="number" onChange={change} />
+                                    <select class="form-select" value={formData.idMarca} name="idMarca" onChange={change}>
+                                        <option class="selected"></option>
+                                        {marche.map((marca) => (
+                                            <option key={marca.id} value={marca.id}>
+                                                {marca.nome}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
 
