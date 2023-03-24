@@ -3,13 +3,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 // components takes precedence over default styles.
 import React, { useState } from 'react';
 
-export default function CreaProdotto() {
+export default function CreaMarca() {
 
     const initialFormData = Object.freeze({
-        nome: '',
-        prezzo: '',
-        peso: '',
-        idMarca: '',
+        nome: ''
     });
 
     const [formData, setFormData] = useState(initialFormData);
@@ -31,20 +28,17 @@ export default function CreaProdotto() {
     const submit = (e) => {
         e.preventDefault();
 
-        const prodotto = {
+        const marca = {
             id: 0,
-            nome: formData.nome,
-            prezzo: formData.prezzo,
-            peso: formData.peso,
-            idMarca: formData.idMarca
+            nome: formData.nome
         };
 
-        fetch('https://localhost:7273/api/Prodotto', {
+        fetch('https://localhost:7273/api/Marca', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(prodotto)
+            body: JSON.stringify(marca)
         })
             .then(response => response.json())
             .then(responseFromServer => {
@@ -59,14 +53,14 @@ export default function CreaProdotto() {
     };
 
     return (
-        <div class="modal fade" id="creaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true">
+        <div class="modal fade" id="creaMarcaModal" tabIndex="-1" role="dialog" aria-labelledby="creaMarcaModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
 
                 <div class="modal-content">
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="creaProdottoModalLabel">Nuovo prodotto</h5>
+                        <h5 class="modal-title" id="creaMarcaModalLabel">Nuova marca</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={close} ></button>
 
                     </div>
@@ -74,31 +68,10 @@ export default function CreaProdotto() {
                     <div class="modal-body">
                         <form class="w-100 px-3">
 
-                            <div class="form-group row mt-4">
+                            <div class="form-group row my-4">
                                 <label class="h3 col-sm-2 col-form-label">Nome</label>
                                 <div class="col-sm-7">
                                     <input class="form-control" value={formData.nome} name="nome" type="text" onChange={change} />
-                                </div>
-                            </div>
-
-                            <div class="form-group row mt-4">
-                                <label class="h3 col-sm-2 col-form-label">Prezzo</label>
-                                <div class="col-sm-7">
-                                    <input class="form-control" value={formData.prezzo} name="prezzo" type="currency" onChange={change} />
-                                </div>
-                            </div>
-
-                            <div class="form-group row mt-4">
-                                <label class="h3 col-sm-2 col-form-label">Peso</label>
-                                <div class="col-sm-7">
-                                    <input class="form-control" value={formData.peso} name="peso" type="number" onChange={change} />
-                                </div>
-                            </div>
-
-                            <div class="form-group row my-4">
-                                <label class="h3 col-sm-2 col-form-label">Marca</label>
-                                <div class="col-sm-7">
-                                    <input class="form-control" value={formData.idMarca} name="idMarca" type="number" onChange={change} />
                                 </div>
                             </div>
 

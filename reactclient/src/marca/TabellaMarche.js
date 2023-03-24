@@ -1,3 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
 import React, { useEffect, useState } from 'react';
 
 export default function TabellaMarche() {
@@ -16,7 +19,7 @@ export default function TabellaMarche() {
     return (
         <div class="text-center">
             <h1 class="my-5">Lista Marche</h1>
-            <button className="btn btn-success btn-sm">Aggiungi nuova marca</button>
+            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#creaMarcaModal">Aggiungi nuova marca</button>
             <div className="table-responsive mt-5">
                 <table className="table table-bordered border-dark">
                     <thead>
