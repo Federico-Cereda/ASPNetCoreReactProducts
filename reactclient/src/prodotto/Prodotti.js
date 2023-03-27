@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import TabellaProdotti from './TabellaProdotti';
 import CreaProdotto from './CreaProdotto';
+import DettagliProdotto from './DettagliProdotto';
 
 export default function Prodotti() {
 
@@ -13,6 +14,7 @@ export default function Prodotti() {
                 <div className="col d-flex flex-column justify-content-center align-items-center">
                     <TabellaProdotti />
                     <CreaProdotto />
+                    <DettagliProdotto />
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ export default function TabellaProdotti() {
                                 <td>{prodotto.peso} g</td>
                                 <td>{prodotto.idMarcaNavigation.nome}</td>
                                 <td>
-                                    <button className="btn btn-primary btn-sm">Detagli</button>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal">Dettagli</button>
                                     <button className="btn btn-secondary btn-sm mx-1 my-1">Modifica</button>
                                     <button className="btn btn-dark btn-sm">Elimina</button>
                                 </td>
@@ -50,7 +50,7 @@ export default function TabellaProdotti() {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     )
 
 }
