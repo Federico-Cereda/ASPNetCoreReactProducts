@@ -16,19 +16,43 @@ namespace aspnetserver.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Prodotto>> GetProdotti()
+        public async Task<IResult> GetProdotti()
         {
-            return await _prodottoService.GetProdotti();
+            List<Prodotto> prodotti = await _prodottoService.GetProdotti();
+
+            if (prodotti != null)
+            {
+                return Results.Ok(prodotti);
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IResult> GetProdottoById(int id)
+        {
+            Prodotto prodotto = await _prodottoService.GetProdottoById(id);
+
+            if (prodotto != null)
+            {
+                return Results.Ok(prodotto);
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
         }
 
         [HttpPost]
         public async Task<IResult> PostProdotto(Prodotto prodotto)
         {
-            bool createSuccessful = await _prodottoService.PostProdotto(prodotto);
+            bool creato = await _prodottoService.PostProdotto(prodotto);
 
-            if (createSuccessful)
+            if (creato)
             {
-                return Results.Ok("Create successful.");
+                return Results.Ok($"{prodotto.Nome} creato.");
             }
             else
             {

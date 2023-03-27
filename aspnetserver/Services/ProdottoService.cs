@@ -17,6 +17,11 @@ namespace aspnetserver.Services
             return await _prodottoRepository.GetProdotti();
         }
 
+        public async Task<Prodotto> GetProdottoById(int id)
+        {
+            return await _prodottoRepository.GetProdottoById(id);
+        }
+
         public async Task<bool> PostProdotto(Prodotto prodotto)
         {
             return await _prodottoRepository.PostProdotto(prodotto);
