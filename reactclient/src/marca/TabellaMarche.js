@@ -35,7 +35,7 @@ export default function TabellaMarche() {
                                 <th scope="row">{marca.id}</th>
                                 <td>{marca.nome}</td>
                                 <td>
-                                    <button className="btn btn-primary btn-sm">Detagli</button>
+                                    <button className="btn btn-primary btn-sm">Dettagli</button>
                                     <button className="btn btn-secondary btn-sm mx-1 my-1">Modifica</button>
                                     <button className="btn btn-dark btn-sm">Elimina</button>
                                 </td>
