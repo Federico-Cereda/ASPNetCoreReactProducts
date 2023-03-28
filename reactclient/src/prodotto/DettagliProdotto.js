@@ -17,16 +17,21 @@ export default function DettagliProdotto() {
     });
 
     const [prodotto, setProdotto] = useState(initialData)
-    const id = 1;
+
     useEffect(() => {
-        fetch('https://localhost:7273/api/Prodotto/' + id, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(result => {
-                setProdotto(result);
+        const dettagliProdottoModal = document.getElementById('dettagliProdottoModal')
+        dettagliProdottoModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget
+            const id = button.getAttribute('data-bs-whatever')
+            fetch('https://localhost:7273/api/Prodotto/' + id, {
+                method: 'GET'
             })
-    }, []);
+                .then(response => response.json())
+                .then(result => {
+                    setProdotto(result);
+                })
+        }, []);
+    })
 
     return (
         <div class="modal fade" id="dettagliProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="dettagliProdottoModalLabel" aria-hidden="true">

@@ -41,7 +41,7 @@ export default function TabellaProdotti() {
                                 <td>{prodotto.peso} g</td>
                                 <td>{prodotto.idMarcaNavigation.nome}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal">Dettagli</button>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={prodotto.id}>Dettagli</button>
                                     <button className="btn btn-secondary btn-sm mx-1 my-1">Modifica</button>
                                     <button className="btn btn-dark btn-sm">Elimina</button>
                                 </td>
