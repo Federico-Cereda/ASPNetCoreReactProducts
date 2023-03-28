@@ -55,5 +55,17 @@ namespace aspnetserver.Repositories
             }
         }
 
+        public async Task<bool> PutProdotto(Prodotto prodotto)
+        {
+            try
+            {
+                _context.Prodotto.Update(prodotto);
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

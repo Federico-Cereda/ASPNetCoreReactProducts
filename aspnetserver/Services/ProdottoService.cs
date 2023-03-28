@@ -27,5 +27,9 @@ namespace aspnetserver.Services
             return await _prodottoRepository.PostProdotto(prodotto);
         }
 
+        public async Task<bool> PutProdotto(Prodotto prodotto)
+        {
+            return await _prodottoRepository.PutProdotto(prodotto);
+        }
     }
 }

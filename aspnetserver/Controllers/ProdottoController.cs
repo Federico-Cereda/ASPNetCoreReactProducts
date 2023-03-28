@@ -60,5 +60,20 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IResult> PutProdotto(Prodotto prodotto)
+        {
+            bool modificato = await _prodottoService.PutProdotto(prodotto);
+
+            if (modificato)
+            {
+                return Results.Ok($"{prodotto.Nome} modificato.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }
