@@ -1,5 +1,6 @@
 ﻿using aspnetserver.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace aspnetserver.Repositories
 {
@@ -60,6 +61,7 @@ namespace aspnetserver.Repositories
             try
             {
                 _context.Prodotto.Update(prodotto);
+
                 return await _context.SaveChangesAsync() >= 1;
             }
             catch (Exception e)
@@ -67,5 +69,22 @@ namespace aspnetserver.Repositories
                 return false;
             }
         }
+
+        public async Task<bool> EliminaProdotto(int id)
+        {
+            try
+            {
+                Prodotto prodotto = await GetProdottoById(id);
+
+                _context.Prodotto.Remove(prodotto);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }

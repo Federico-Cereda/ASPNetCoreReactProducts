@@ -75,5 +75,22 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpDelete]
+        public async Task<IResult> EliminaProdotto(int id)
+        {
+            string nome = _prodottoService.GetProdottoById(id).Result.Nome;
+
+            bool eliminato = await _prodottoService.EliminaProdotto(id);
+
+            if (eliminato)
+            {
+                return Results.Ok($"{nome} eliminato");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }
