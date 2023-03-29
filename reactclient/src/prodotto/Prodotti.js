@@ -5,6 +5,7 @@ import React from 'react';
 import TabellaProdotti from './TabellaProdotti';
 import CreaProdotto from './CreaProdotto';
 import DettagliProdotto from './DettagliProdotto';
+import ModificaProdotto from './ModificaProdotto';
 
 export default function Prodotti() {
 
@@ -15,6 +16,7 @@ export default function Prodotti() {
                     <TabellaProdotti />
                     <CreaProdotto />
                     <DettagliProdotto />
+                    <ModificaProdotto />
                 </div>
             </div>
         </div>

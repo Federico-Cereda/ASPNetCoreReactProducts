@@ -17,7 +17,6 @@ export default function DettagliProdotto() {
     });
 
     const [prodotto, setProdotto] = useState(initialData)
-
     useEffect(() => {
         const dettagliProdottoModal = document.getElementById('dettagliProdottoModal')
         dettagliProdottoModal.addEventListener('show.bs.modal', event => {
@@ -34,7 +33,7 @@ export default function DettagliProdotto() {
     })
 
     return (
-        <div class="modal fade" id="dettagliProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="dettagliProdottoModalLabel" aria-hidden="true">
+        <div class="modal fade" id="dettagliProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="dettagliProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog" role="document">
 
                 <div class="modal-content">
@@ -72,7 +71,7 @@ export default function DettagliProdotto() {
 
                     <div class="modal-footer">
 
-                        <button type="button" class="close btn btn-secondary">Modifica</button>
+                        <button type="button" class="close btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modificaProdottoModal" data-bs-whatever={prodotto.id}>Modifica</button>
                         <button type="button" class="close btn btn-dark">Elimina</button>
 
                     </div>

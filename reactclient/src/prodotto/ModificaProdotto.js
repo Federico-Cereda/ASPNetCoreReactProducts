@@ -3,23 +3,34 @@ import 'bootstrap/dist/css/bootstrap.css';
 // components takes precedence over default styles.
 import React, { useEffect, useState } from 'react';
 
-export default function CreaProdotto() {
+export default function ModificaProdotto() {
 
     const initialFormData = Object.freeze({
         nome: '',
         prezzo: '',
         peso: '',
         idMarca: '',
+        idMarcaNavigation: {
+            id: '',
+            nome: ''
+        }
     });
 
     const [formData, setFormData] = useState(initialFormData);
-
-    const close = (e) => {
-        setFormData({
-            ...initialFormData,
-            [e.target.name]: null,
-        });
-    };
+    useEffect(() => {
+        const dettagliProdottoModal = document.getElementById('modificaProdottoModal')
+        dettagliProdottoModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget
+            const id = button.getAttribute('data-bs-whatever')
+            fetch('https://localhost:7273/api/Prodotto/' + id, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(result => {
+                    setFormData(result);
+                })
+        }, []);
+    })
 
     const change = (e) => {
         setFormData({
@@ -32,7 +43,7 @@ export default function CreaProdotto() {
         e.preventDefault();
 
         const prodotto = {
-            id: 0,
+            id: formData.id,
             nome: formData.nome,
             prezzo: formData.prezzo,
             peso: formData.peso,
@@ -40,7 +51,7 @@ export default function CreaProdotto() {
         };
 
         fetch('https://localhost:7273/api/Prodotto', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -70,15 +81,15 @@ export default function CreaProdotto() {
     }, [])
 
     return (
-        <div class="modal fade" id="creaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal fade" id="modificaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="modificaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog" role="document">
 
                 <div class="modal-content">
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="creaProdottoModalLabel">Nuovo prodotto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={close}></button>
+                        <h5 class="modal-title" id="modificaProdottoModalLabel">Modifica</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     </div>
 
@@ -125,7 +136,8 @@ export default function CreaProdotto() {
 
                     <div class="modal-footer">
 
-                        <button type="button" onClick={submit} class="close btn btn-success" data-bs-dismiss="modal" aria-label="Close">Aggiungi</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={formData.id}>Dettagli</button>
+                        <button type="button" onClick={submit} class="close btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Modifica</button>
 
                     </div>
 

@@ -42,7 +42,7 @@ export default function TabellaProdotti() {
                                 <td>{prodotto.idMarcaNavigation.nome}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={prodotto.id}>Dettagli</button>
-                                    <button className="btn btn-secondary btn-sm mx-1 my-1">Modifica</button>
+                                    <button type="button" class="btn btn-secondary btn-sm mx-1 my-1" data-bs-toggle="modal" data-bs-target="#modificaProdottoModal" data-bs-whatever={prodotto.id}>Modifica</button>
                                     <button className="btn btn-dark btn-sm">Elimina</button>
                                 </td>
                             </tr>
@@ -50,7 +50,7 @@ export default function TabellaProdotti() {
                     </tbody>
                 </table>
             </div>
-        </div >
+        </div>
     )
 
 }
