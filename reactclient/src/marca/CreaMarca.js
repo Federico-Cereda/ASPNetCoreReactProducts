@@ -61,7 +61,7 @@ export default function CreaMarca() {
                     <div class="modal-header">
 
                         <h5 class="modal-title" id="creaMarcaModalLabel">Nuova marca</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={close} ></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={close}></button>
 
                     </div>
 
