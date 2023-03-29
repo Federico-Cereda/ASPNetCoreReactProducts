@@ -41,7 +41,7 @@ namespace aspnetserver.Repositories
                           }).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<bool> PostProdotto(Prodotto prodotto)
+        public async Task<bool> CreaProdotto(Prodotto prodotto)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace aspnetserver.Repositories
             }
         }
 
-        public async Task<bool> PutProdotto(Prodotto prodotto)
+        public async Task<bool> ModificaProdotto(Prodotto prodotto)
         {
             try
             {

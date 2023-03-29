@@ -22,13 +22,13 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPost]
-        public async Task<IResult> PostMarca(Marca marca)
+        public async Task<IResult> CreaMarca(Marca marca)
         {
-            bool createSuccessful = await _marcaService.PostMarca(marca);
+            bool creata = await _marcaService.CreaMarca(marca);
 
-            if (createSuccessful)
+            if (creata)
             {
-                return Results.Ok("Create successful.");
+                return Results.Ok($"{marca.Nome} creata.");
             }
             else
             {

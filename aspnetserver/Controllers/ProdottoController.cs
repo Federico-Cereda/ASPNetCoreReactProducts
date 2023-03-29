@@ -46,9 +46,9 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPost]
-        public async Task<IResult> PostProdotto(Prodotto prodotto)
+        public async Task<IResult> CreaProdotto(Prodotto prodotto)
         {
-            bool creato = await _prodottoService.PostProdotto(prodotto);
+            bool creato = await _prodottoService.CreaProdotto(prodotto);
 
             if (creato)
             {
@@ -61,9 +61,9 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPut]
-        public async Task<IResult> PutProdotto(Prodotto prodotto)
+        public async Task<IResult> ModificaProdotto(Prodotto prodotto)
         {
-            bool modificato = await _prodottoService.PutProdotto(prodotto);
+            bool modificato = await _prodottoService.ModificaProdotto(prodotto);
 
             if (modificato)
             {

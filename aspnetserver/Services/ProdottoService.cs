@@ -22,14 +22,14 @@ namespace aspnetserver.Services
             return await _prodottoRepository.GetProdottoById(id);
         }
 
-        public async Task<bool> PostProdotto(Prodotto prodotto)
+        public async Task<bool> CreaProdotto(Prodotto prodotto)
         {
-            return await _prodottoRepository.PostProdotto(prodotto);
+            return await _prodottoRepository.CreaProdotto(prodotto);
         }
 
-        public async Task<bool> PutProdotto(Prodotto prodotto)
+        public async Task<bool> ModificaProdotto(Prodotto prodotto)
         {
-            return await _prodottoRepository.PutProdotto(prodotto);
+            return await _prodottoRepository.ModificaProdotto(prodotto);
         }
     }
 }
