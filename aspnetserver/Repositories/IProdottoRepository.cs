@@ -8,6 +8,7 @@ namespace aspnetserver.Repositories
         Task<Prodotto> GetProdottoById(int id);
         Task<bool> CreaProdotto(Prodotto prodotto);
         Task<bool> ModificaProdotto(Prodotto prodotto);
+        Task<bool> EliminaProdotto(int id);
 
     }
 }
