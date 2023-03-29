@@ -46,13 +46,28 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPost]
-        public async Task<IResult> PostProdotto(Prodotto prodotto)
+        public async Task<IResult> CreaProdotto(Prodotto prodotto)
         {
-            bool creato = await _prodottoService.PostProdotto(prodotto);
+            bool creato = await _prodottoService.CreaProdotto(prodotto);
 
             if (creato)
             {
                 return Results.Ok($"{prodotto.Nome} creato.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
+        [HttpPut]
+        public async Task<IResult> ModificaProdotto(Prodotto prodotto)
+        {
+            bool modificato = await _prodottoService.ModificaProdotto(prodotto);
+
+            if (modificato)
+            {
+                return Results.Ok($"{prodotto.Nome} modificato.");
             }
             else
             {
