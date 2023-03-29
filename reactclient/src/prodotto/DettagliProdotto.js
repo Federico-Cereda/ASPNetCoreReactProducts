@@ -71,14 +71,20 @@ export default function DettagliProdotto() {
 
                     <div class="modal-footer">
 
-                        <button type="button" class="close btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modificaProdottoModal" data-bs-whatever={prodotto.id}>Modifica</button>
-                        <button type="button" class="close btn btn-dark">Elimina</button>
+                        <div class="position-absolute start-0">
+                            <button type="button" class="close btn btn-secondary mx-2" data-bs-toggle="modal" data-bs-target="#modificaProdottoModal" data-bs-whatever={prodotto.id}>Modifica</button>
+                            <button type="button" class="close btn btn-dark" data-bs-toggle="modal" data-bs-target="#eliminaProdottoModal" data-bs-whatever={prodotto.id}>Elimina</button>
+                        </div>
+
+                        <div class="position-relative end-0">
+                            <button type="button" class="close btn btn-light" data-bs-dismiss="modal" aria-label="Close">Chiudi</button>
+                        </div>
 
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div >
     )
 
 }

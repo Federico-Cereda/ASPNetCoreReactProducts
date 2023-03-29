@@ -136,8 +136,15 @@ export default function ModificaProdotto() {
 
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={formData.id}>Dettagli</button>
-                        <button type="button" onClick={submit} class="close btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Modifica</button>
+                        <div class="position-absolute start-0">
+                            <button type="button" class="close btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={formData.id}>Dettagli</button>
+                            <button type="button" class="close btn btn-dark" data-bs-toggle="modal" data-bs-target="#eliminaProdottoModal" data-bs-whatever={formData.id}>Elimina</button>
+                        </div>
+
+                        <div class="position-relative end-0">
+                            <button type="button" class="close btn btn-light" data-bs-dismiss="modal" aria-label="Close">Annulla</button>
+                            <button type="button" onClick={submit} class="close btn btn-secondary ms-2" data-bs-dismiss="modal" aria-label="Close">Modifica</button>
+                        </div>
 
                     </div>
 
