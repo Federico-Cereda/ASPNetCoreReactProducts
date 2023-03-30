@@ -18,8 +18,8 @@ export default function ModificaProdotto() {
 
     const [formData, setFormData] = useState(initialFormData);
     useEffect(() => {
-        const dettagliProdottoModal = document.getElementById('modificaProdottoModal')
-        dettagliProdottoModal.addEventListener('show.bs.modal', event => {
+        const modificaProdottoModal = document.getElementById('modificaProdottoModal')
+        modificaProdottoModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
             fetch('https://localhost:7273/api/Prodotto/' + id, {
