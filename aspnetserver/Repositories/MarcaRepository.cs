@@ -36,5 +36,18 @@ namespace aspnetserver.Repositories
             }
         }
 
+        public async Task<bool> ModificaMarca(Marca marca)
+        {
+            try
+            {
+                _context.Marca.Update(marca);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

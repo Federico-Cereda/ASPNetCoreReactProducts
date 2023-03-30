@@ -60,5 +60,20 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IResult> ModificaMarca(Marca marca)
+        {
+            bool modificata = await _marcaService.ModificaMarca(marca);
+
+            if (modificata)
+            {
+                return Results.Ok($"{marca.Nome} modificata.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }

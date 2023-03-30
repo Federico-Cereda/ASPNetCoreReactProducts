@@ -27,5 +27,10 @@ namespace aspnetserver.Services
             return await _marcaRepository.CreaMarca(marca);
         }
 
+        public async Task<bool> ModificaMarca(Marca marca)
+        {
+            return await _marcaRepository.ModificaMarca(marca);
+        }
+
     }
 }

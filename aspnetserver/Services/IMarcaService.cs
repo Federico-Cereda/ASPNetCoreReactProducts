@@ -7,6 +7,7 @@ namespace aspnetserver.Services
         Task<List<Marca>> GetMarche();
         Task<Marca> GetMarcaById(int id);
         Task<bool> CreaMarca(Marca marca);
+        Task<bool> ModificaMarca(Marca marca);
 
     }
 }
