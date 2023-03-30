@@ -8,6 +8,7 @@ namespace aspnetserver.Repositories
         Task<Marca> GetMarcaById(int id);
         Task<bool> CreaMarca(Marca marca);
         Task<bool> ModificaMarca(Marca marca);
+        Task<bool> EliminaMarca(int id);
 
     }
 }

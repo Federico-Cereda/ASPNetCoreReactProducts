@@ -75,5 +75,22 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpDelete]
+        public async Task<IResult> EliminaMarca(int id)
+        {
+            string nome = _marcaService.GetMarcaById(id).Result.Nome;
+
+            bool eliminata = await _marcaService.EliminaMarca(id);
+
+            if (eliminata)
+            {
+                return Results.Ok($"{nome} eliminata.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }
