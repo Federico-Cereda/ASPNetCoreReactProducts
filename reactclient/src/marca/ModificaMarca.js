@@ -11,8 +11,8 @@ export default function ModificaMarca() {
 
     const [formData, setFormData] = useState(initialFormData);
     useEffect(() => {
-        const dettagliMarcaModal = document.getElementById('modificaMarcaModal')
-        dettagliMarcaModal.addEventListener('show.bs.modal', event => {
+        const modificaMarcaModal = document.getElementById('modificaMarcaModal')
+        modificaMarcaModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
             fetch('https://localhost:7273/api/Marca/' + id, {

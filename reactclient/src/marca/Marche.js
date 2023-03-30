@@ -6,6 +6,7 @@ import TabellaMarche from './TabellaMarche';
 import CreaMarca from './CreaMarca';
 import DettagliMarca from './DettagliMarca';
 import ModificaMarca from './ModificaMarca';
+import EliminaMarca from './EliminaMarca';
 
 export default function Marche() {
 
@@ -17,6 +18,7 @@ export default function Marche() {
                     <CreaMarca />
                     <DettagliMarca />
                     <ModificaMarca />
+                    <EliminaMarca />
                 </div>
             </div>
         </div>
