@@ -67,6 +67,11 @@ export default function CreaProdotto() {
             .then(result => {
                 setMarche(result);
             })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+
     }, [])
 
     return (

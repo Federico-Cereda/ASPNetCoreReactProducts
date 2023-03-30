@@ -22,6 +22,11 @@ export default function DettagliMarca() {
                 .then(result => {
                     setMarca(result);
                 })
+                .catch((error) => {
+                    console.log(error);
+                    alert(error);
+                });
+
         }, []);
     })
 

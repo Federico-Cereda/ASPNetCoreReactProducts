@@ -29,6 +29,11 @@ export default function ModificaProdotto() {
                 .then(result => {
                     setFormData(result);
                 })
+                .catch((error) => {
+                    console.log(error);
+                    alert(error);
+                });
+
         }, []);
     })
 
@@ -78,6 +83,11 @@ export default function ModificaProdotto() {
             .then(result => {
                 setMarche(result);
             })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+
     }, [])
 
     return (

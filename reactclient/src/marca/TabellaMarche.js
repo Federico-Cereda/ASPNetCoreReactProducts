@@ -14,6 +14,11 @@ export default function TabellaMarche() {
             .then(result => {
                 setMarche(result);
             })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+
     }, [])
 
     return (

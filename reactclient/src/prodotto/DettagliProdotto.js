@@ -29,6 +29,11 @@ export default function DettagliProdotto() {
                 .then(result => {
                     setProdotto(result);
                 })
+                .catch((error) => {
+                    console.log(error);
+                    alert(error);
+                });
+
         }, []);
     })
 
