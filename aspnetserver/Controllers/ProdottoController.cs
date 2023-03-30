@@ -84,7 +84,7 @@ namespace aspnetserver.Controllers
 
             if (eliminato)
             {
-                return Results.Ok($"{nome} eliminato");
+                return Results.Ok($"{nome} eliminato.");
             }
             else
             {

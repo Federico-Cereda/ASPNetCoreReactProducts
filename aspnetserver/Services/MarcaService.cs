@@ -32,5 +32,10 @@ namespace aspnetserver.Services
             return await _marcaRepository.ModificaMarca(marca);
         }
 
+        public async Task<bool> EliminaMarca(int id)
+        {
+            return await _marcaRepository.EliminaMarca(id);
+        }
+
     }
 }

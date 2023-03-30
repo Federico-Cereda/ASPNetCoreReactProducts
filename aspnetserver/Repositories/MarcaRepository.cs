@@ -49,5 +49,22 @@ namespace aspnetserver.Repositories
                 return false;
             }
         }
+
+        public async Task<bool> EliminaMarca(int id)
+        {
+            try
+            {
+                Marca marca = await GetMarcaById(id);
+
+                _context.Marca.Remove(marca);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
