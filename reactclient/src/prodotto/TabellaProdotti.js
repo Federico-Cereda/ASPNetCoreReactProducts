@@ -14,6 +14,11 @@ export default function TabellaProdotti() {
             .then(result => {
                 setProdotti(result);
             })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+
     }, []);
 
     return (

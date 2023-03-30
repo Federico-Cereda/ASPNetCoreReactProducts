@@ -29,6 +29,11 @@ export default function EliminaProdotto() {
                 .then(result => {
                     setProdotto(result);
                 })
+                .catch((error) => {
+                    console.log(error);
+                    alert(error);
+                });
+
         }, []);
     })
 
