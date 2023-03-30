@@ -17,6 +17,11 @@ namespace aspnetserver.Repositories
             return await _context.Marca.ToListAsync();
         }
 
+        public async Task<Marca> GetMarcaById(int id)
+        {
+            return await _context.Marca.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<bool> CreaMarca(Marca marca)
         {
             try
