@@ -6,6 +6,7 @@ import TabellaProdotti from './TabellaProdotti';
 import CreaProdotto from './CreaProdotto';
 import DettagliProdotto from './DettagliProdotto';
 import ModificaProdotto from './ModificaProdotto';
+import EliminaProdotto from './EliminaProdotto';
 
 export default function Prodotti() {
 
@@ -17,6 +18,7 @@ export default function Prodotti() {
                     <CreaProdotto />
                     <DettagliProdotto />
                     <ModificaProdotto />
+                    <EliminaProdotto />
                 </div>
             </div>
         </div>

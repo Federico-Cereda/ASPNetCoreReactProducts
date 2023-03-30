@@ -43,7 +43,7 @@ export default function TabellaProdotti() {
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={prodotto.id}>Dettagli</button>
                                     <button type="button" class="btn btn-secondary btn-sm mx-1 my-1" data-bs-toggle="modal" data-bs-target="#modificaProdottoModal" data-bs-whatever={prodotto.id}>Modifica</button>
-                                    <button className="btn btn-dark btn-sm">Elimina</button>
+                                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#eliminaProdottoModal" data-bs-whatever={prodotto.id}>Elimina</button>
                                 </td>
                             </tr>
                         ))}
