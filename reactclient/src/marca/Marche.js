@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React from 'react';
-import CreaMarca from './CreaMarca';
 import TabellaMarche from './TabellaMarche';
+import CreaMarca from './CreaMarca';
+import DettagliMarca from './DettagliMarca';
 
 export default function Marche() {
 
@@ -13,6 +14,7 @@ export default function Marche() {
                 <div className="col d-flex flex-column justify-content-center align-items-center">
                     <TabellaMarche />
                     <CreaMarca />
+                    <DettagliMarca />
                 </div>
             </div>
         </div>

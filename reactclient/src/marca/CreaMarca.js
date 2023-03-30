@@ -79,9 +79,10 @@ export default function CreaMarca() {
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" onClick={submit} class="close btn btn-success" data-bs-dismiss="modal" aria-label="Close">
-                            Aggiungi
-                        </button>
+
+                        <button type="button" class="close btn btn-light" data-bs-dismiss="modal" aria-label="Close">Annulla</button>
+                        <button type="button" onClick={submit} class="close btn btn-success ms-2" data-bs-dismiss="modal" aria-label="Close">Aggiungi</button>
+
                     </div>
 
                 </div>
