@@ -5,7 +5,7 @@ namespace aspnetserver.Services
     public interface IMarcaService
     {
         Task<List<Marca>> GetMarche();
-
+        Task<Marca> GetMarcaById(int id);
         Task<bool> CreaMarca(Marca marca);
 
     }
