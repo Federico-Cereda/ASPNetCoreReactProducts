@@ -52,7 +52,7 @@ namespace aspnetserver.Controllers
 
             if (creata)
             {
-                return Results.Ok($"{marca.Nome} creata.");
+                return Results.Ok($"Marca {marca.Nome} creata.");
             }
             else
             {
@@ -67,7 +67,7 @@ namespace aspnetserver.Controllers
 
             if (modificata)
             {
-                return Results.Ok($"{marca.Nome} modificata.");
+                return Results.Ok($"Marca {marca.Nome} modificata.");
             }
             else
             {
@@ -84,7 +84,7 @@ namespace aspnetserver.Controllers
 
             if (eliminata)
             {
-                return Results.Ok($"{nome} eliminata.");
+                return Results.Ok($"Marca {nome} eliminata.");
             }
             else
             {
