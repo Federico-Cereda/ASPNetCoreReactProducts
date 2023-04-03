@@ -52,7 +52,7 @@ namespace aspnetserver.Controllers
 
             if (creato)
             {
-                return Results.Ok($"{prodotto.Nome} creato.");
+                return Results.Ok($"Prodotto {prodotto.Nome} creato.");
             }
             else
             {
@@ -67,7 +67,7 @@ namespace aspnetserver.Controllers
 
             if (modificato)
             {
-                return Results.Ok($"{prodotto.Nome} modificato.");
+                return Results.Ok($"Prodotto {prodotto.Nome} modificato.");
             }
             else
             {
@@ -84,7 +84,7 @@ namespace aspnetserver.Controllers
 
             if (eliminato)
             {
-                return Results.Ok($"{nome} eliminato.");
+                return Results.Ok($"Prodotto {nome} eliminato.");
             }
             else
             {
