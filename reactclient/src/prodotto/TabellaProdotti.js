@@ -2,12 +2,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React, { useEffect, useState } from 'react';
+import UrlBase from '../UrlBase';
 
 export default function TabellaProdotti() {
 
     const [prodotti, setProdotti] = useState([])
     useEffect(() => {
-        fetch('https://localhost:7273/api/Prodotto', {
+        const url = UrlBase.API_PRODOTTO;
+        fetch(url, {
             method: 'GET'
         })
             .then(response => response.json())

@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React, { useEffect, useState } from 'react';
+import UrlBase from '../UrlBase';
 
 export default function EliminaProdotto() {
 
@@ -22,7 +23,8 @@ export default function EliminaProdotto() {
         eliminaProdottoModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Prodotto/' + id, {
+            const url = `${UrlBase.API_PRODOTTO}/${id}`;
+            fetch(url, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -40,7 +42,8 @@ export default function EliminaProdotto() {
     const submit = (e) => {
         e.preventDefault();
 
-        fetch('https://localhost:7273/api/Prodotto?id=' + prodotto.id, {
+        const url = `${UrlBase.API_PRODOTTO}?id=${prodotto.id}`;
+        fetch(url, {
             method: 'DELETE'
         })
             .then(response => response.json())

@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React, { useEffect, useState } from 'react';
+import UrlBase from '../UrlBase';
 
 export default function ModificaMarca() {
 
@@ -15,7 +16,8 @@ export default function ModificaMarca() {
         modificaMarcaModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Marca/' + id, {
+            const url = `${UrlBase.API_MARCA}/${id}`;
+            fetch(url, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -45,7 +47,8 @@ export default function ModificaMarca() {
             nome: formData.nome
         };
 
-        fetch('https://localhost:7273/api/Marca', {
+        const url = UrlBase.API_MARCA;
+        fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
