@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React, { useEffect, useState } from 'react';
+import UrlBase from '../UrlBase';
 
 export default function EliminaMarca() {
 
@@ -15,7 +16,8 @@ export default function EliminaMarca() {
         eliminaMarcaModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('http://carrellospesaapi/api/Marca/' + id, {
+            const url = `${UrlBase.API_MARCA}/${id}`;
+            fetch(url, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -33,7 +35,8 @@ export default function EliminaMarca() {
     const submit = (e) => {
         e.preventDefault();
 
-        fetch('http://carrellospesaapi/api/Marca?id=' + marca.id, {
+        const url = `${UrlBase.API_MARCA}?id=${marca.id}`;
+        fetch(url, {
             method: 'DELETE'
         })
             .then(response => response.json())

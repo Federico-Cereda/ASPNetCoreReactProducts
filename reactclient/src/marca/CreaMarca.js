@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React, { useState } from 'react';
+import UrlBase from '../UrlBase';
 
 export default function CreaMarca() {
 
@@ -33,7 +34,8 @@ export default function CreaMarca() {
             nome: formData.nome
         };
 
-        fetch('http://carrellospesaapi/api/Marca', {
+        const url = UrlBase.API_MARCA;
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
