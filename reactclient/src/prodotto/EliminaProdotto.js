@@ -22,7 +22,7 @@ export default function EliminaProdotto() {
         eliminaProdottoModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Prodotto/' + id, {
+            fetch('http://carrellospesaapi/api/Prodotto/' + id, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -40,7 +40,7 @@ export default function EliminaProdotto() {
     const submit = (e) => {
         e.preventDefault();
 
-        fetch('https://localhost:7273/api/Prodotto?id=' + prodotto.id, {
+        fetch('http://carrellospesaapi/api/Prodotto?id=' + prodotto.id, {
             method: 'DELETE'
         })
             .then(response => response.json())

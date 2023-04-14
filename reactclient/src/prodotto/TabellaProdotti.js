@@ -7,7 +7,7 @@ export default function TabellaProdotti() {
 
     const [prodotti, setProdotti] = useState([])
     useEffect(() => {
-        fetch('https://localhost:7273/api/Prodotto', {
+        fetch('http://carrellospesaapi/api/Prodotto', {
             method: 'GET'
         })
             .then(response => response.json())

@@ -39,7 +39,7 @@ export default function CreaProdotto() {
             idMarca: formData.idMarca
         };
 
-        fetch('https://localhost:7273/api/Prodotto', {
+        fetch('http://carrellospesaapi/api/Prodotto', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -60,7 +60,7 @@ export default function CreaProdotto() {
 
     const [marche, setMarche] = useState([]);
     useEffect(() => {
-        fetch('https://localhost:7273/api/Marca', {
+        fetch('http://carrellospesaapi/api/Marca', {
             method: 'GET'
         })
             .then(response => response.json())

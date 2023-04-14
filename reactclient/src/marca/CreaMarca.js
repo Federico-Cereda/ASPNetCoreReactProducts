@@ -33,7 +33,7 @@ export default function CreaMarca() {
             nome: formData.nome
         };
 
-        fetch('https://localhost:7273/api/Marca', {
+        fetch('http://carrellospesaapi/api/Marca', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

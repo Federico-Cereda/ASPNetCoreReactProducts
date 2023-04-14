@@ -15,7 +15,7 @@ export default function DettagliMarca() {
         dettagliMarcaModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Marca/' + id, {
+            fetch('http://carrellospesaapi/api/Marca/' + id, {
                 method: 'GET'
             })
                 .then(response => response.json())

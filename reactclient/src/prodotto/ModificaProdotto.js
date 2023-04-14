@@ -22,7 +22,7 @@ export default function ModificaProdotto() {
         modificaProdottoModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Prodotto/' + id, {
+            fetch('http://carrellospesaapi/api/Prodotto/' + id, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -55,7 +55,7 @@ export default function ModificaProdotto() {
             idMarca: formData.idMarca
         };
 
-        fetch('https://localhost:7273/api/Prodotto', {
+        fetch('http://carrellospesaapi/api/Prodotto', {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -76,7 +76,7 @@ export default function ModificaProdotto() {
 
     const [marche, setMarche] = useState([]);
     useEffect(() => {
-        fetch('https://localhost:7273/api/Marca', {
+        fetch('http://carrellospesaapi/api/Marca', {
             method: 'GET'
         })
             .then(response => response.json())

@@ -15,7 +15,7 @@ export default function ModificaMarca() {
         modificaMarcaModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Marca/' + id, {
+            fetch('http://carrellospesaapi/api/Marca/' + id, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -45,7 +45,7 @@ export default function ModificaMarca() {
             nome: formData.nome
         };
 
-        fetch('https://localhost:7273/api/Marca', {
+        fetch('http://carrellospesaapi/api/Marca', {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'

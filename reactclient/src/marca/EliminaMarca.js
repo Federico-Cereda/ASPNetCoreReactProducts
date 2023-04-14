@@ -15,7 +15,7 @@ export default function EliminaMarca() {
         eliminaMarcaModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget
             const id = button.getAttribute('data-bs-whatever')
-            fetch('https://localhost:7273/api/Marca/' + id, {
+            fetch('http://carrellospesaapi/api/Marca/' + id, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -33,7 +33,7 @@ export default function EliminaMarca() {
     const submit = (e) => {
         e.preventDefault();
 
-        fetch('https://localhost:7273/api/Marca?id=' + marca.id, {
+        fetch('http://carrellospesaapi/api/Marca?id=' + marca.id, {
             method: 'DELETE'
         })
             .then(response => response.json())
