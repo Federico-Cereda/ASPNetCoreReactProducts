@@ -27,6 +27,8 @@ builder.Services.AddScoped<IProdottoRepository, ProdottoRepository>();
 builder.Services.AddScoped<IProdottoService, ProdottoService>();
 builder.Services.AddScoped<IMarcaRepository, MarcaRepository>();
 builder.Services.AddScoped<IMarcaService, MarcaService>();
+builder.Services.AddScoped<IPromozioneRepository, PromozioneRepository>();
+builder.Services.AddScoped<IPromozioneService, PromozioneService>();
 
 var app = builder.Build();
 
