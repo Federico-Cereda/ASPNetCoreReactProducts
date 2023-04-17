@@ -26,4 +26,6 @@ public partial class Prodotto
     public int? IdInformazione { get; set; }
 
     public virtual Marca? IdMarcaNavigation { get; set; }
+
+    public virtual Promozione? IdPromozioneNavigation { get; set; }
 }
