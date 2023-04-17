@@ -32,8 +32,13 @@ export default function Footer() {
                     <NavLink to="/Marche" className="nav-link font-weight-bolder text-uppercase text-white">Marche</NavLink>
                 </li>
             </ul>
+            <ul class="list-unstyled mb-0 mx-1 d-inline-block">
+                <li>
+                    <NavLink to="/Promozioni" className="nav-link font-weight-bolder text-uppercase text-white">Promozioni</NavLink>
+                </li>
+            </ul>
 
         </footer>
-    )
+    );
 
-}
+};

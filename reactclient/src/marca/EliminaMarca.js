@@ -30,7 +30,7 @@ export default function EliminaMarca() {
                 });
 
         }, []);
-    })
+    });
 
     const submit = (e) => {
         e.preventDefault();
@@ -87,6 +87,6 @@ export default function EliminaMarca() {
                 </div>
             </div>
         </div>
-    )
+    );
 
-}
+};

@@ -90,6 +90,6 @@ export default function CreaMarca() {
                 </div>
             </div>
         </div>
-    )
+    );
 
-}
+};

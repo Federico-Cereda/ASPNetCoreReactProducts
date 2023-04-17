@@ -37,7 +37,7 @@ export default function DettagliProdotto() {
                 });
 
         }, []);
-    })
+    });
 
     return (
         <div class="modal fade" id="dettagliProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="dettagliProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -92,6 +92,6 @@ export default function DettagliProdotto() {
                 </div>
             </div>
         </div >
-    )
+    );
 
-}
+};

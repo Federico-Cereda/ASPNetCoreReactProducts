@@ -37,7 +37,7 @@ export default function EliminaProdotto() {
                 });
 
         }, []);
-    })
+    });
 
     const submit = (e) => {
         e.preventDefault();
@@ -94,6 +94,6 @@ export default function EliminaProdotto() {
                 </div>
             </div>
         </div>
-    )
+    );
 
-}
+};

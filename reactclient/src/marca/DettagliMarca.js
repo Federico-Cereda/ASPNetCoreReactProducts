@@ -30,7 +30,7 @@ export default function DettagliMarca() {
                 });
 
         }, []);
-    })
+    });
 
     return (
         <div class="modal fade" id="dettagliMarcaModal" tabIndex="-1" role="dialog" aria-labelledby="dettagliMarcaModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -70,6 +70,6 @@ export default function DettagliMarca() {
                 </div>
             </div>
         </div >
-    )
+    );
 
-}
+};
