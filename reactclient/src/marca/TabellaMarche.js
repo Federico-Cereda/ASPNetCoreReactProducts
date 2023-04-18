@@ -21,7 +21,7 @@ export default function TabellaMarche() {
                 alert(error);
             });
 
-    }, [])
+    }, []);
 
     return (
         <div class="text-center">
@@ -52,6 +52,6 @@ export default function TabellaMarche() {
                 </table>
             </div>
         </div>
-    )
+    );
 
-}
+};

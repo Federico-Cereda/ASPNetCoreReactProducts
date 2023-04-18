@@ -30,7 +30,7 @@ export default function ModificaMarca() {
                 });
 
         }, []);
-    })
+    });
 
     const change = (e) => {
         setFormData({
@@ -110,15 +110,6 @@ export default function ModificaMarca() {
                 </div>
             </div>
         </div>
-    )
+    );
 
-
-
-
-
-
-
-
-
-
-}
+};

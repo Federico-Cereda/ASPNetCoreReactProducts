@@ -75,7 +75,7 @@ export default function CreaProdotto() {
                 alert(error);
             });
 
-    }, [])
+    }, []);
 
     return (
         <div class="modal fade" id="creaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -141,6 +141,6 @@ export default function CreaProdotto() {
                 </div>
             </div>
         </div>
-    )
+    );
 
-}
+};

@@ -19,9 +19,12 @@ export default function Header() {
                     <li class="nav-item mx-3">
                         <NavLink to="/Marche" className="nav-link font-weight-bolder text-uppercase">Marche</NavLink>
                     </li>
+                    <li class="nav-item mx-3">
+                        <NavLink to="/Promozioni" className="nav-link font-weight-bolder text-uppercase">Promozioni</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>
-    )
+    );
 
-}
+};

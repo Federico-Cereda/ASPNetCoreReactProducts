@@ -58,6 +58,6 @@ export default function TabellaProdotti() {
                 </table>
             </div>
         </div>
-    )
+    );
 
-}
+};

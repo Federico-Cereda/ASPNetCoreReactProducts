@@ -37,7 +37,7 @@ export default function ModificaProdotto() {
                 });
 
         }, []);
-    })
+    });
 
     const change = (e) => {
         setFormData({
@@ -92,7 +92,7 @@ export default function ModificaProdotto() {
                 alert(error);
             });
 
-    }, [])
+    }, []);
 
     return (
         <div class="modal fade" id="modificaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="modificaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -165,6 +165,6 @@ export default function ModificaProdotto() {
                 </div>
             </div>
         </div>
-    )
+    );
 
-}
+};

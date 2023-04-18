@@ -8,8 +8,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Prodotti from './prodotto/Prodotti';
 import Marche from './marca/Marche';
+import Promozioni from './promozione/Promozioni';
 
 export default function App() {
+
   return (
     <BrowserRouter>
       <div>
@@ -18,9 +20,11 @@ export default function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Prodotti" element={<Prodotti />}></Route>
           <Route path="/Marche" element={<Marche />}></Route>
+          <Route path="/Promozioni" element={<Promozioni />}></Route>
         </Routes>
         <Footer />
       </div>
     </BrowserRouter>
   );
-}
+
+};
