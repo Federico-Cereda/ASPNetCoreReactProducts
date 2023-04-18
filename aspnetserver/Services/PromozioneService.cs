@@ -17,5 +17,10 @@ namespace aspnetserver.Services
             return await _promozioneRepository.GetPromozioni();
         }
 
+        public async Task<bool> CreaPromozione(Promozione promozione)
+        {
+            return await _promozioneRepository.CreaPromozione(promozione);
+        }
+
     }
 }
