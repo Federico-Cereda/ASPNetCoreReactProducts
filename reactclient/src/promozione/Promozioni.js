@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // components takes precedence over default styles.
 import React from 'react';
 import TabellaPromozioni from './TabellaPromozioni';
+import CreaPromozione from './CreaPromozione';
 
 export default function Promozioni() {
 
@@ -11,6 +12,7 @@ export default function Promozioni() {
             <div className="row min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-items-center">
                     <TabellaPromozioni />
+                    <CreaPromozione />
                 </div>
             </div>
         </div>

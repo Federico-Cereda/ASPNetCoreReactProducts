@@ -10,7 +10,7 @@ export default function CreaProdotto() {
         nome: '',
         prezzo: '',
         peso: '',
-        idMarca: '',
+        idMarca: ''
     });
 
     const [formData, setFormData] = useState(initialFormData);
