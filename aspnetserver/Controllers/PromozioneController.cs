@@ -30,5 +30,20 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IResult> CreaPromozione(Promozione promozione)
+        {
+            bool creata = await _promozioneService.CreaPromozione(promozione);
+
+            if (creata)
+            {
+                return Results.Ok($"Promozione {promozione.Nome} creata.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }
