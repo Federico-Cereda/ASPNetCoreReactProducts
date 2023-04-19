@@ -17,6 +17,11 @@ namespace aspnetserver.Repositories
             return await _context.Promozione.ToListAsync();
         }
 
+        public async Task<Promozione> GetPromozioneById(int id)
+        {
+            return await _context.Promozione.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<bool> CreaPromozione(Promozione promozione)
         {
             try

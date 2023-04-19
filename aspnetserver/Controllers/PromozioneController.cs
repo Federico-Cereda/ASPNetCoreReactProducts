@@ -30,6 +30,21 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<IResult> GetPromozioneById(int id)
+        {
+            Promozione promozione = await _promozioneService.GetPromozioneById(id);
+
+            if (promozione != null)
+            {
+                return Results.Ok(promozione);
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
         [HttpPost]
         public async Task<IResult> CreaPromozione(Promozione promozione)
         {
