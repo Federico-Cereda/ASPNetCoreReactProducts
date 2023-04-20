@@ -75,5 +75,22 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpDelete]
+        public async Task<IResult> EliminaPromozione(int id)
+        {
+            string nome = _promozioneService.GetPromozioneById(id).Result.Nome;
+
+            bool eliminata = await _promozioneService.EliminaPromozione(id);
+
+            if (eliminata)
+            {
+                return Results.Ok($"Promozione {nome} eliminata.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }
