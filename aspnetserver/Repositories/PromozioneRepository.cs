@@ -36,5 +36,19 @@ namespace aspnetserver.Repositories
             }
         }
 
+        public async Task<bool> ModificaPromozione(Promozione promozione)
+        {
+            try
+            {
+                _context.Promozione.Update(promozione);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }

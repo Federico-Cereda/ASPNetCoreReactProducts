@@ -7,6 +7,7 @@ namespace aspnetserver.Repositories
         Task<List<Promozione>> GetPromozioni();
         Task<Promozione> GetPromozioneById(int id);
         Task<bool> CreaPromozione(Promozione promozione);
+        Task<bool> ModificaPromozione(Promozione promozione);
 
     }
 }
