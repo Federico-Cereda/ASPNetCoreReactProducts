@@ -60,5 +60,20 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IResult> ModificaPromozione(Promozione promozione)
+        {
+            bool modificata = await _promozioneService.ModificaPromozione(promozione);
+
+            if (modificata)
+            {
+                return Results.Ok($"Promozione {promozione.Nome} modificata.");
+            }
+            else
+            {
+                return Results.BadRequest();
+            }
+        }
+
     }
 }
