@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import TabellaPromozioni from './TabellaPromozioni';
 import CreaPromozione from './CreaPromozione';
+import DettagliPromozione from './DettagliPromozione';
 
 export default function Promozioni() {
 
@@ -13,6 +14,7 @@ export default function Promozioni() {
                 <div className="col d-flex flex-column justify-content-center align-items-center">
                     <TabellaPromozioni />
                     <CreaPromozione />
+                    <DettagliPromozione />
                 </div>
             </div>
         </div>
