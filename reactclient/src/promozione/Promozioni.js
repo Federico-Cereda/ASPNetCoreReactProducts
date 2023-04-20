@@ -5,6 +5,7 @@ import React from 'react';
 import TabellaPromozioni from './TabellaPromozioni';
 import CreaPromozione from './CreaPromozione';
 import DettagliPromozione from './DettagliPromozione';
+import ModificaPromozione from './ModificaPromozione';
 
 export default function Promozioni() {
 
@@ -15,6 +16,7 @@ export default function Promozioni() {
                     <TabellaPromozioni />
                     <CreaPromozione />
                     <DettagliPromozione />
+                    <ModificaPromozione />
                 </div>
             </div>
         </div>
