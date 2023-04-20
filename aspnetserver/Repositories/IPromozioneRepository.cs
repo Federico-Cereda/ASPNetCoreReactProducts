@@ -10,6 +10,5 @@ namespace aspnetserver.Repositories
         Task<bool> ModificaPromozione(Promozione promozione);
         Task<bool> EliminaPromozione(int id);
 
-
     }
 }
