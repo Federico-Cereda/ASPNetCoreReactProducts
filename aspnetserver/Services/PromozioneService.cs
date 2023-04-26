@@ -32,5 +32,10 @@ namespace aspnetserver.Services
             return await _promozioneRepository.ModificaPromozione(promozione);
         }
 
+        public async Task<bool> EliminaPromozione(int id)
+        {
+            return await _promozioneRepository.EliminaPromozione(id);
+        }
+
     }
 }

@@ -50,5 +50,21 @@ namespace aspnetserver.Repositories
             }
         }
 
+        public async Task<bool> EliminaPromozione(int id)
+        {
+            try
+            {
+                Promozione promozione = await GetPromozioneById(id);
+
+                _context.Promozione.Remove(promozione);
+
+                return await _context.SaveChangesAsync() >= 1;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
