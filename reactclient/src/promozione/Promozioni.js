@@ -6,6 +6,7 @@ import TabellaPromozioni from './TabellaPromozioni';
 import CreaPromozione from './CreaPromozione';
 import DettagliPromozione from './DettagliPromozione';
 import ModificaPromozione from './ModificaPromozione';
+import EliminaPromozione from './EliminaPromozione';
 
 export default function Promozioni() {
 
@@ -17,6 +18,7 @@ export default function Promozioni() {
                     <CreaPromozione />
                     <DettagliPromozione />
                     <ModificaPromozione />
+                    <EliminaPromozione />
                 </div>
             </div>
         </div>
