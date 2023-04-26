@@ -11,9 +11,16 @@ export default function ModificaProdotto() {
         prezzo: '',
         peso: '',
         idMarca: '',
+        idPromozione: '',
         idMarcaNavigation: {
             id: '',
             nome: ''
+        },
+        idPromozioneNavigation: {
+            id: '',
+            nome: '',
+            valore: '',
+            dataFine: ''
         }
     });
 
@@ -54,7 +61,8 @@ export default function ModificaProdotto() {
             nome: formData.nome,
             prezzo: formData.prezzo,
             peso: formData.peso,
-            idMarca: formData.idMarca
+            idMarca: formData.idMarca,
+            idPromozione: formData.idPromozione
         };
 
         const url = UrlBase.API_PRODOTTO;
@@ -94,6 +102,23 @@ export default function ModificaProdotto() {
 
     }, []);
 
+    const [promozioni, setPromozioni] = useState([]);
+    useEffect(() => {
+        const url = UrlBase.API_PROMOZIONE;
+        fetch(url, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(result => {
+                setPromozioni(result);
+            })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+
+    }, []);
+
     return (
         <div class="modal fade" id="modificaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="modificaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog" role="document">
@@ -111,34 +136,48 @@ export default function ModificaProdotto() {
                         <form class="w-100 px-3">
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-2 col-form-label">Nome</label>
-                                <div class="col-sm-10">
+                                <label class="h3 col-sm-3 col-form-label">Nome</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" value={formData.nome} name="nome" type="text" onChange={change} />
                                 </div>
                             </div>
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-2 col-form-label">Prezzo</label>
-                                <div class="col-sm-10">
+                                <label class="h3 col-sm-3 col-form-label">Prezzo</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" value={formData.prezzo} name="prezzo" type="currency" onChange={change} />
                                 </div>
                             </div>
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-2 col-form-label">Peso</label>
-                                <div class="col-sm-10">
+                                <label class="h3 col-sm-3 col-form-label">Peso</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" value={formData.peso} name="peso" type="number" onChange={change} />
                                 </div>
                             </div>
 
-                            <div class="form-group row my-4">
-                                <label class="h3 col-sm-2 col-form-label">Marca</label>
-                                <div class="col-sm-10">
+                            <div class="form-group row mt-4">
+                                <label class="h3 col-sm-3 col-form-label">Marca</label>
+                                <div class="col-sm-9">
                                     <select class="form-select" value={formData.idMarca} name="idMarca" onChange={change}>
                                         <option class="selected"></option>
                                         {marche.map((marca) => (
                                             <option key={marca.id} value={marca.id}>
                                                 {marca.nome}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row my-4">
+                                <label class="h3 col-sm-3 col-form-label">Promozione</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" value={formData.idPromozione} name="idPromozione" onChange={change}>
+                                        <option class="selected"></option>
+                                        {promozioni.map((promozione) => (
+                                            <option key={promozione.id} value={promozione.id}>
+                                                {promozione.nome}
                                             </option>
                                         ))}
                                     </select>

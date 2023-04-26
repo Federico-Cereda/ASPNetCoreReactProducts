@@ -17,13 +17,16 @@ namespace aspnetserver.Repositories
         {
             return await (from p in _context.Prodotto
                           join m in _context.Marca on p.IdMarca equals m.Id
+                          join r in _context.Promozione on p.IdPromozione equals r.Id
                           select new Prodotto{
                               Id = p.Id,
                               Nome = p.Nome,
                               Prezzo = p.Prezzo,
                               Peso = p.Peso,
                               IdMarca = p.IdMarca,
-                              IdMarcaNavigation = m
+                              IdPromozione = p.IdPromozione,
+                              IdMarcaNavigation = m,
+                              IdPromozioneNavigation = r
                           }).ToListAsync();
         }
 
@@ -31,6 +34,7 @@ namespace aspnetserver.Repositories
         {
             return await (from p in _context.Prodotto
                           join m in _context.Marca on p.IdMarca equals m.Id
+                          join r in _context.Promozione on p.IdPromozione equals r.Id
                           select new Prodotto
                           {
                               Id = p.Id,
@@ -38,7 +42,9 @@ namespace aspnetserver.Repositories
                               Prezzo = p.Prezzo,
                               Peso = p.Peso,
                               IdMarca = p.IdMarca,
-                              IdMarcaNavigation = m
+                              IdPromozione = p.IdPromozione,
+                              IdMarcaNavigation = m,
+                              IdPromozioneNavigation = r
                           }).FirstOrDefaultAsync(x => x.Id == id);
         }
 

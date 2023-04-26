@@ -36,6 +36,7 @@ export default function TabellaProdotti() {
                             <th scope="col">Prezzo</th>
                             <th scope="col">Peso</th>
                             <th scope="col">Marca</th>
+                            <th scope="col">Promozione</th>
                             <th scope="col">CRUD Operations</th>
                         </tr>
                     </thead>
@@ -47,6 +48,7 @@ export default function TabellaProdotti() {
                                 <td>{prodotto.prezzo} €</td>
                                 <td>{prodotto.peso} g</td>
                                 <td>{prodotto.idMarcaNavigation.nome}</td>
+                                <td>{prodotto.idPromozioneNavigation.nome}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliProdottoModal" data-bs-whatever={prodotto.id}>Dettagli</button>
                                     <button type="button" class="btn btn-secondary btn-sm mx-1 my-1" data-bs-toggle="modal" data-bs-target="#modificaProdottoModal" data-bs-whatever={prodotto.id}>Modifica</button>
