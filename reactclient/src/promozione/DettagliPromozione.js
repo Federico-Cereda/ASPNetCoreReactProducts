@@ -59,9 +59,9 @@ export default function DettagliPromozione() {
                             <div class="col-sm-10">{promozione.valore} %</div>
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row my-4">
                             <div class="h5 col-sm-2">Termine</div>
-                            <div class="col-sm-10">{promozione.dataFine}</div>
+                            <div class="col-sm-10">{promozione.dataFine.substring(8, 10)}{promozione.dataFine.substring(4, 8)}{promozione.dataFine.substring(0, 4)}</div>
                         </div>
 
                     </div>

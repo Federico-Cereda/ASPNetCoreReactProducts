@@ -101,10 +101,10 @@ export default function ModificaPromozione() {
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-4">
+                            <div class="form-group row my-4">
                                 <label class="h3 col-sm-2 col-form-label">Termine</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" value={formData.dataFine} name="dataFine" type="datetime" onChange={change} />
+                                    <input class="form-control" value={`${formData.dataFine.substring(8, 10)}${formData.dataFine.substring(4, 8)}${formData.dataFine.substring(0, 4)}`} name="dataFine" type="datetime" onChange={change} />
                                 </div>
                             </div>
 

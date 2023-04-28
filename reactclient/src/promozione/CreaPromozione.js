@@ -88,7 +88,7 @@ export default function CreaPromozione() {
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-4">
+                            <div class="form-group row my-4">
                                 <label class="h3 col-sm-2 col-form-label">Termine</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" value={formData.dataFine} name="dataFine" type="datetime" onChange={change} />

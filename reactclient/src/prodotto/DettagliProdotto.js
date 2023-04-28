@@ -11,9 +11,16 @@ export default function DettagliProdotto() {
         prezzo: '',
         peso: '',
         idMarca: '',
+        idPromozione: '',
         idMarcaNavigation: {
             id: '',
             nome: ''
+        },
+        idPromozioneNavigation: {
+            id: '',
+            nome: '',
+            valore: '',
+            dataFine: ''
         }
     });
 
@@ -55,23 +62,28 @@ export default function DettagliProdotto() {
                     <div class="modal-body w-100 px-3">
 
                         <div class="row mt-4">
-                            <div class="h5 col-sm-2">Nome</div>
-                            <div class="col-sm-10">{prodotto.nome}</div>
+                            <div class="h5 col-sm-3">Nome</div>
+                            <div class="col-sm-9">{prodotto.nome}</div>
                         </div>
 
                         <div class="row mt-4">
-                            <div class="h5 col-sm-2">Prezzo</div>
-                            <div class="col-sm-10">{prodotto.prezzo} €</div>
+                            <div class="h5 col-sm-3">Prezzo</div>
+                            <div class="col-sm-9">{prodotto.prezzo} €</div>
                         </div>
 
                         <div class="row mt-4">
-                            <div class="h5 col-sm-2">Peso</div>
-                            <div class="col-sm-10">{prodotto.peso} g</div>
+                            <div class="h5 col-sm-3">Peso</div>
+                            <div class="col-sm-9">{prodotto.peso} g</div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="h5 col-sm-3">Marca</div>
+                            <div class="col-sm-9">{prodotto.idMarcaNavigation.nome}</div>
                         </div>
 
                         <div class="row my-4">
-                            <div class="h5 col-sm-2">Marca</div>
-                            <div class="col-sm-10">{prodotto.idMarcaNavigation.nome}</div>
+                            <div class="h5 col-sm-3">Promozione</div>
+                            <div class="col-sm-9">{prodotto.idPromozioneNavigation.nome}</div>
                         </div>
 
                     </div>

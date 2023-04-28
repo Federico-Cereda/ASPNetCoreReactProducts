@@ -44,7 +44,7 @@ export default function TabellaPromozioni() {
                                 <th scope="row">{promozione.id}</th>
                                 <td>{promozione.nome}</td>
                                 <td>{promozione.valore} %</td>
-                                <td>{promozione.dataFine}</td>
+                                <td>{promozione.dataFine.substring(8, 10)}{promozione.dataFine.substring(4, 8)}{promozione.dataFine.substring(0, 4)}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dettagliPromozioneModal" data-bs-whatever={promozione.id}>Dettagli</button>
                                     <button type="button" class="btn btn-secondary btn-sm mx-1 my-1" data-bs-toggle="modal" data-bs-target="#modificaPromozioneModal" data-bs-whatever={promozione.id}>Modifica</button>
