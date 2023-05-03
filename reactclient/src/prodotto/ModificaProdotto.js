@@ -10,18 +10,8 @@ export default function ModificaProdotto() {
         nome: '',
         prezzo: '',
         peso: '',
-        idMarca: '',
-        idPromozione: '',
-        idMarcaNavigation: {
-            id: '',
-            nome: ''
-        },
-        idPromozioneNavigation: {
-            id: '',
-            nome: '',
-            valore: '',
-            dataFine: ''
-        }
+        idMarca: null,
+        idPromozione: null
     });
 
     const [formData, setFormData] = useState(initialFormData);
@@ -61,9 +51,17 @@ export default function ModificaProdotto() {
             nome: formData.nome,
             prezzo: formData.prezzo,
             peso: formData.peso,
-            idMarca: formData.idMarca,
-            idPromozione: formData.idPromozione
+            idMarca: null,
+            idPromozione: null
         };
+
+        if (formData.idMarca !== (null || 'Nessuna')) {
+            prodotto.idMarca = formData.idMarca;
+        } else { };
+
+        if (formData.idPromozione !== (null || 'Nessuna')) {
+            prodotto.idPromozione = formData.idPromozione;
+        } else { };
 
         const url = UrlBase.API_PRODOTTO;
         fetch(url, {
@@ -121,7 +119,7 @@ export default function ModificaProdotto() {
 
     return (
         <div class="modal fade" id="modificaProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="modificaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
 
                 <div class="modal-content">
 
@@ -136,31 +134,31 @@ export default function ModificaProdotto() {
                         <form class="w-100 px-3">
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-3 col-form-label">Nome</label>
-                                <div class="col-sm-9">
+                                <label class="h3 col-sm-2 col-form-label">Nome</label>
+                                <div class="col-sm-6">
                                     <input class="form-control" value={formData.nome} name="nome" type="text" onChange={change} />
                                 </div>
                             </div>
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-3 col-form-label">Prezzo</label>
-                                <div class="col-sm-9">
+                                <label class="h3 col-sm-2 col-form-label">Prezzo</label>
+                                <div class="col-sm-6">
                                     <input class="form-control" value={formData.prezzo} name="prezzo" type="currency" onChange={change} />
                                 </div>
                             </div>
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-3 col-form-label">Peso</label>
-                                <div class="col-sm-9">
+                                <label class="h3 col-sm-2 col-form-label">Peso</label>
+                                <div class="col-sm-6">
                                     <input class="form-control" value={formData.peso} name="peso" type="number" onChange={change} />
                                 </div>
                             </div>
 
                             <div class="form-group row mt-4">
-                                <label class="h3 col-sm-3 col-form-label">Marca</label>
-                                <div class="col-sm-9">
+                                <label class="h3 col-sm-2 col-form-label">Marca</label>
+                                <div class="col-sm-6">
                                     <select class="form-select" value={formData.idMarca} name="idMarca" onChange={change}>
-                                        <option class="selected"></option>
+                                        <option value={null}>Nessuna</option>
                                         {marche.map((marca) => (
                                             <option key={marca.id} value={marca.id}>
                                                 {marca.nome}
@@ -168,13 +166,14 @@ export default function ModificaProdotto() {
                                         ))}
                                     </select>
                                 </div>
+                                <button type="button" class="btn btn-outline-success btn-sm col-sm-4" data-bs-toggle="modal" data-bs-target="#creaMarcaModal">Aggiungi nuova marca</button>
                             </div>
 
                             <div class="form-group row my-4">
-                                <label class="h3 col-sm-3 col-form-label">Promozione</label>
-                                <div class="col-sm-9">
+                                <label class="h3 col-sm-2 col-form-label">Promozione</label>
+                                <div class="col-sm-6">
                                     <select class="form-select" value={formData.idPromozione} name="idPromozione" onChange={change}>
-                                        <option class="selected"></option>
+                                        <option value={null}>Nessuna</option>
                                         {promozioni.map((promozione) => (
                                             <option key={promozione.id} value={promozione.id}>
                                                 {promozione.nome}
@@ -182,6 +181,7 @@ export default function ModificaProdotto() {
                                         ))}
                                     </select>
                                 </div>
+                                <button type="button" class="btn btn-outline-success btn-sm col-sm-4" data-bs-toggle="modal" data-bs-target="#creaPromozioneModal">Aggiungi nuova promozione</button>
                             </div>
 
                         </form>

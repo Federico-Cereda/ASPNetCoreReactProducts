@@ -11,17 +11,7 @@ export default function EliminaProdotto() {
         prezzo: '',
         peso: '',
         idMarca: '',
-        idPromozione: '',
-        idMarcaNavigation: {
-            id: '',
-            nome: ''
-        },
-        idPromozioneNavigation: {
-            id: '',
-            nome: '',
-            valore: '',
-            dataFine: ''
-        }
+        idPromozione: ''
     });
 
     const [prodotto, setProdotto] = useState(initialData)

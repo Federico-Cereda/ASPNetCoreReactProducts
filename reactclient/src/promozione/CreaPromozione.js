@@ -91,7 +91,7 @@ export default function CreaPromozione() {
                             <div class="form-group row my-4">
                                 <label class="h3 col-sm-2 col-form-label">Termine</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" value={formData.dataFine} name="dataFine" type="datetime" onChange={change} />
+                                    <input class="form-control" value={formData.dataFine} name="dataFine" type="date" onChange={change} />
                                 </div>
                             </div>
 
@@ -100,7 +100,7 @@ export default function CreaPromozione() {
 
                     <div class="modal-footer">
 
-                        <button type="button" class="close btn btn-light" data-bs-dismiss="modal" aria-label="Close">Annulla</button>
+                        <button type="button" onClick={close} class="close btn btn-light" data-bs-dismiss="modal" aria-label="Close">Annulla</button>
                         <button type="button" onClick={submit} class="close btn btn-success ms-2" data-bs-dismiss="modal" aria-label="Close">Aggiungi</button>
 
                     </div>

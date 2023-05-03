@@ -23,6 +23,24 @@ export default function TabellaProdotti() {
 
     }, []);
 
+    prodotti.forEach(function (prodotto) {
+        if (prodotto.idMarcaNavigation === null) {
+            return prodotto.idMarcaNavigation = {
+                id: 0,
+                nome: 'Nessuna'
+            };
+        };
+    });
+
+    prodotti.forEach(function (prodotto) {
+        if (prodotto.idPromozioneNavigation === null) {
+            return prodotto.idPromozioneNavigation = {
+                id: 0,
+                nome: 'Nessuna'
+            };
+        };
+    });
+
     return (
         <div class="text-center">
             <h1 class="my-5">Lista Prodotti</h1>

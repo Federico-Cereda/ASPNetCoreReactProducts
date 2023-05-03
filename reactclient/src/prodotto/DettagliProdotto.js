@@ -18,9 +18,7 @@ export default function DettagliProdotto() {
         },
         idPromozioneNavigation: {
             id: '',
-            nome: '',
-            valore: '',
-            dataFine: ''
+            nome: ''
         }
     });
 
@@ -45,6 +43,20 @@ export default function DettagliProdotto() {
 
         }, []);
     });
+
+    if (prodotto.idMarcaNavigation === null) {
+        return prodotto.idMarcaNavigation = {
+            id: 0,
+            nome: 'Nessuna'
+        }
+    } else { };
+
+    if (prodotto.idPromozioneNavigation === null) {
+        return prodotto.idPromozioneNavigation = {
+            id: 0,
+            nome: 'Nessuna'
+        }
+    } else { };
 
     return (
         <div class="modal fade" id="dettagliProdottoModal" tabIndex="-1" role="dialog" aria-labelledby="dettagliProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">

@@ -7,6 +7,8 @@ import CreaProdotto from './CreaProdotto';
 import DettagliProdotto from './DettagliProdotto';
 import ModificaProdotto from './ModificaProdotto';
 import EliminaProdotto from './EliminaProdotto';
+import CreaMarca from '../marca/CreaMarca';
+import CreaPromozione from '../promozione/CreaPromozione';
 
 export default function Prodotti() {
 
@@ -19,6 +21,8 @@ export default function Prodotti() {
                     <DettagliProdotto />
                     <ModificaProdotto />
                     <EliminaProdotto />
+                    <CreaMarca />
+                    <CreaPromozione />
                 </div>
             </div>
         </div>

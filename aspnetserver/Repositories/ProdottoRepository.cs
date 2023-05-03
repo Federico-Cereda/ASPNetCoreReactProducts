@@ -16,8 +16,10 @@ namespace aspnetserver.Repositories
         public async Task<List<Prodotto>> GetProdotti()
         {
             return await (from p in _context.Prodotto
-                          join m in _context.Marca on p.IdMarca equals m.Id
-                          join r in _context.Promozione on p.IdPromozione equals r.Id
+                          join m in _context.Marca on p.IdMarca equals m.Id into pmJoin
+                          from pm in pmJoin.DefaultIfEmpty()
+                          join r in _context.Promozione on p.IdPromozione equals r.Id into prJoin
+                          from pr in prJoin.DefaultIfEmpty()
                           select new Prodotto{
                               Id = p.Id,
                               Nome = p.Nome,
@@ -25,16 +27,18 @@ namespace aspnetserver.Repositories
                               Peso = p.Peso,
                               IdMarca = p.IdMarca,
                               IdPromozione = p.IdPromozione,
-                              IdMarcaNavigation = m,
-                              IdPromozioneNavigation = r
+                              IdMarcaNavigation = pm,
+                              IdPromozioneNavigation = pr
                           }).ToListAsync();
         }
 
         public async Task<Prodotto> GetProdottoById(int id)
         {
             return await (from p in _context.Prodotto
-                          join m in _context.Marca on p.IdMarca equals m.Id
-                          join r in _context.Promozione on p.IdPromozione equals r.Id
+                          join m in _context.Marca on p.IdMarca equals m.Id into pmJoin
+                          from pm in pmJoin.DefaultIfEmpty()
+                          join r in _context.Promozione on p.IdPromozione equals r.Id into prJoin
+                          from pr in prJoin.DefaultIfEmpty()
                           select new Prodotto
                           {
                               Id = p.Id,
@@ -43,8 +47,8 @@ namespace aspnetserver.Repositories
                               Peso = p.Peso,
                               IdMarca = p.IdMarca,
                               IdPromozione = p.IdPromozione,
-                              IdMarcaNavigation = m,
-                              IdPromozioneNavigation = r
+                              IdMarcaNavigation = pm,
+                              IdPromozioneNavigation = pr
                           }).FirstOrDefaultAsync(x => x.Id == id);
         }
 
