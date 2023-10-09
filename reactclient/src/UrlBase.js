@@ -1,4 +1,4 @@
-const API_BASE_URL_DEVELOPMENT = 'https://localhost:7273/api';
+const API_BASE_URL_DEVELOPMENT = 'http://localhost:5047/api';
 const API_BASE_URL_PRODUCTION = 'http://carrellospesaapi/api';
 
 const ENDPOINTS = {
