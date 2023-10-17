@@ -27,7 +27,5 @@
     // prodotto?: (null)[] | null;
   }
 
-  export type ProdottoFormCrea = Omit<Prodotto, 'id' | 'idMarcaNavigation' |'idPromozioneNavigation'>
-
-  export type ProdottoFormModifica = Omit<Prodotto, 'idMarcaNavigation' |'idPromozioneNavigation'>
+  export type ProdottoForm = Omit<Prodotto, 'idMarcaNavigation' |'idPromozioneNavigation'>
   

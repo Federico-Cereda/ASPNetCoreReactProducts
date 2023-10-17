@@ -1,26 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from 'react';
-import { UrlBase } from '../../../shared';
-import { Marca } from '../../../model';
+import { useMarche } from '../hooks/useMarche';
 
 export default function TabellaMarche() {
-    const [marche, setMarche] = useState<Marca[]>([])
-    
-    useEffect(() => {
-        const url = UrlBase.API_MARCA;
-        fetch(url, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(result => {
-                setMarche(result);
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
 
-    }, []);
+    const marche = useMarche()
 
     return (
         <div className="text-center">

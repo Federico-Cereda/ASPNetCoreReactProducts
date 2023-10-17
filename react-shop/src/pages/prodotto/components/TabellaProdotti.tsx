@@ -1,40 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from 'react';
-import { UrlBase } from '../../../shared';
-import { Prodotto } from '../../../model';
+import { useProdotti } from '../hooks/useProdotti';
 
 export default function TabellaProdotti() {
-    const [prodotti, setProdotti] = useState<Prodotto[]>([])
     
-    useEffect(() => {
-        const url = UrlBase.API_PRODOTTO;
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(result => {
-            setProdotti(result);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(error);
-        });
-    }, []);
-
-    prodotti.forEach( prodotto => {
-        if (prodotto.idMarcaNavigation === null) {
-            prodotto.idMarcaNavigation = {
-                id: 0,
-                nome: 'Nessuna'
-            };
-        };
-        if (prodotto.idPromozioneNavigation === null) {
-            prodotto.idPromozioneNavigation =  {
-                id: 0,
-                nome: 'Nessuna'
-            };
-        };
-    });
+    const prodotti = useProdotti()
 
     return (
         <div className="text-center">
