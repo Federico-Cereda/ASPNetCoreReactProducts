@@ -1,45 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState } from 'react';
-import { UrlBase } from '../../../shared';
-import { PromozioneForm } from '../../../model';
+import { usePromozioneCrea } from '../hooks/usePromozioneCrea';
 
 export default function CreaPromozione() {
-    const initialData : PromozioneForm = {
-        nome: '',
-        valore: 0,
-        dataFine: ''
-    };
-    const [promozione, setPromozione] = useState(initialData);
 
-    const close = () => {
-        setPromozione({ ...initialData });
-    };
-
-    const change = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setPromozione(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
-
-    const submit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const url = UrlBase.API_PROMOZIONE;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(promozione)
-        })
-            .then(response => response.json())
-            .then(responseFromServer => {
-                console.log(responseFromServer);
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-
-    };
+    const { promozione, change, close, submitPost } = usePromozioneCrea()
 
     return (
         <div className="modal fade" id="creaPromozioneModal" tabIndex={-1} role="dialog" aria-labelledby="creaPromozioneModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -55,7 +19,7 @@ export default function CreaPromozione() {
                     </div>
 
                     <div className="modal-body">
-                        <form className="w-100 px-3" onSubmit={submit}>
+                        <form className="w-100 px-3">
 
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Nome</label>
@@ -78,17 +42,15 @@ export default function CreaPromozione() {
                                 </div>
                             </div>
 
-                            <div className="modal-footer">
-                                
-                                <button type="button" className="close btn btn-light" data-bs-dismiss="modal" aria-label="Close" onClick={close}>Annulla</button>
-                                <button type="submit" className="close btn btn-success ms-2">Aggiungi</button>
-
-                            </div>
-
                         </form>
                     </div>
 
-                    
+                    <div className="modal-footer">
+                        
+                        <button type="button" className="close btn btn-light" data-bs-dismiss="modal" aria-label="Close" onClick={close}>Annulla</button>
+                        <button type="button" className="btn btn-success ms-2" onClick={submitPost}>Aggiungi</button>
+
+                    </div>
 
                 </div>
             </div>

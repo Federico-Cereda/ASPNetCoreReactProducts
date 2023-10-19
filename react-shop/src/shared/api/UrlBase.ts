@@ -19,4 +19,4 @@ const production = {
     API_PROMOZIONE: `${API_BASE_URL_PRODUCTION}/${ENDPOINTS.PROMOZIONE}`
 };
 
-export const UrlBase = import.meta.env.NODE_ENV === "development" ? development : production;
+export const UrlBase = import.meta.env.MODE === "development" ? development : production;

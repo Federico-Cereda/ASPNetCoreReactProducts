@@ -1,53 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from "react";
-import { Prodotto } from '../../../model';
-import { UrlBase } from '../../../shared';
+import { useProdotto } from '../hooks/useProdotto';
 
 export default function DettagliProdotto() {
-    const initialData : Prodotto = {
-        id: 0,
-        nome: '',
-        prezzo: 0,
-        peso: 0,
-        idMarca: 0,
-        idPromozione: 0,
-        idMarcaNavigation: {
-            id: 0,
-            nome: 'Nessuna'
-        },
-        idPromozioneNavigation: {
-            id: 0,
-            nome: 'Nessuna'
-        }
-    };
-    const [prodotto, setProdotto] = useState<Prodotto>(initialData)
 
-    useEffect(() => {
-        const dettagliProdottoModal = document.getElementById('dettagliProdottoModal')!
-        dettagliProdottoModal.addEventListener('show.bs.modal', (event: any) => {
-            const button = event.relatedTarget
-            const id = button.getAttribute('data-bs-whatever')
-            const url = `${UrlBase.API_PRODOTTO}/${id}`;
-            fetch(url, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                setProdotto(result);
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-        });
-    }, []);
-
-    if (prodotto.idMarca === null) {
-        prodotto.idMarcaNavigation = { id: 0, nome: 'Nessuna' }
-    } else {};
-    if (prodotto.idPromozione === null) {
-        prodotto.idPromozioneNavigation = { id: 0, nome: 'Nessuna' }
-    } else {};
+    const { prodotto } = useProdotto()
 
     return (
         <div className="modal fade" id="dettagliProdottoModal" tabIndex={-1} role="dialog" aria-labelledby="dettagliProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">

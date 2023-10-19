@@ -1,36 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from 'react';
-import { UrlBase } from '../../../shared';
-import { Promozione } from '../../../model';
+import { usePromozioni } from '../hooks/usePromozioni';
 
 export default function TabellaPromozioni() {
-    const [promozioni, setPromozioni] = useState<Promozione[]>([])
 
-    useEffect(() => {
-        const url = UrlBase.API_PROMOZIONE;
-        fetch(url, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(result => {
-                setPromozioni(result);
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-
-    }, []);
-
-    promozioni.forEach( promozione => {
-        if (promozione.valore === null) {
-            promozione.valore = undefined
-        }
-        if (promozione.dataFine === null) {
-            promozione.dataFine = ''
-        }
-    });
-
+    const promozioni = usePromozioni()
+    
     return (
         <div className="text-center">
             <h1 className="my-5">Lista Promozioni</h1>

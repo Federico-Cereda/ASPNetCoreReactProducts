@@ -1,34 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from 'react';
-import { UrlBase } from '../../../shared';
-import { Marca } from '../../../model';
+import { useMarca } from '../hooks/useMarca';
 
 export default function DettagliMarca() {
-    const initialData : Marca = {
-        id: 0,
-        nome: ''
-    };
-    const [marca, setMarca] = useState<Marca>(initialData)
 
-    useEffect(() => {
-        const dettagliMarcaModal = document.getElementById('dettagliMarcaModal')!
-        dettagliMarcaModal.addEventListener('show.bs.modal', (event: any) => {
-            const button = event.relatedTarget
-            const id = button.getAttribute('data-bs-whatever')
-            const url = `${UrlBase.API_MARCA}/${id}`;
-            fetch(url, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                setMarca(result);
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-        });
-    }, []);
+    const { marca } = useMarca()
 
     return (
         <div className="modal fade" id="dettagliMarcaModal" tabIndex={-1} role="dialog" aria-labelledby="dettagliMarcaModalLabel" aria-hidden="true" data-bs-backdrop="static">

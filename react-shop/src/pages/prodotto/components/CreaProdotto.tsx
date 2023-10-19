@@ -1,76 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from 'react';
-import { Marca, ProdottoFormCrea, Promozione } from '../../../model';
-import { UrlBase } from '../../../shared';
+import { useProdottoCrea } from '../hooks/useProdottoCrea';
+import { useMarche } from '../../marca/hooks/useMarche';
+import { usePromozioni } from '../../promozione/hooks/usePromozioni';
 
 export default function CreaProdotto() {
-    const initialData : ProdottoFormCrea = {
-        nome: '',
-        prezzo: 0,
-        peso: 0,
-    };
-    const [prodotto, setProdotto] = useState<ProdottoFormCrea>(initialData);
-    const [marche, setMarche] = useState<Marca[]>([]);
-    const [promozioni, setPromozioni] = useState<Promozione[]>([]);
 
-    useEffect(() => {
-        const url = UrlBase.API_MARCA;
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(result => {
-            setMarche(result);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(error);
-        });
-    }, []);
-
-    useEffect(() => {
-        const url = UrlBase.API_PROMOZIONE;
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(result => {
-            setPromozioni(result);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(error);
-        });
-    }, []);
-
-    const close = () => {
-        setProdotto({ ...initialData });
-    };
-
-    const change = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setProdotto(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
-
-    const submit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const url = UrlBase.API_PRODOTTO;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(prodotto)
-        })
-        .then(response => response.json())
-        .then(responseFromServer => {
-            console.log(responseFromServer);
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(error);
-        });
-    };
+    const marche = useMarche()
+    const promozioni = usePromozioni()
+    const { prodotto, change, close, submitPost } = useProdottoCrea()
 
     return (
         <div className="modal fade" id="creaProdottoModal" tabIndex={-1} role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -86,7 +23,9 @@ export default function CreaProdotto() {
                     </div>
 
                     <div className="modal-body">
-                        <form className="w-100 px-3" onSubmit={submit}>
+                        <form className="w-100 px-3" 
+                        // onSubmit={submitPost}
+                        >
 
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Nome</label>
@@ -139,12 +78,14 @@ export default function CreaProdotto() {
                                 <button type="button" className="btn btn-outline-success btn-sm col-sm-4" data-bs-toggle="modal" data-bs-target="#creaPromozioneModal">Aggiungi nuova promozione</button>
                             </div>
 
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-light" data-bs-dismiss="modal" aria-label="Close" onClick={close}>Annulla</button>
-                                <button type="submit" className="btn btn-success ms-2">Aggiungi</button>
-                            </div>
-
                         </form>
+                    </div>
+
+                    <div className="modal-footer">
+
+                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" aria-label="Close" onClick={close}>Annulla</button>
+                        <button type="button" className="btn btn-success ms-2" onClick={submitPost}>Aggiungi</button>
+                    
                     </div>
 
                 </div>

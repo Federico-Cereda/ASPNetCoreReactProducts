@@ -1,36 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useEffect, useState } from 'react';
-import { UrlBase } from '../../../shared';
-import { Promozione } from '../../../model';
+import { usePromozione } from '../hooks/usePromozione';
 
 export default function DettagliPromozione() {
-    const initialData : Promozione = {
-        id: 0,
-        nome: '',
-        valore: 0,
-        dataFine: ''
-    };
-    const [promozione, setPromozione] = useState<Promozione>(initialData)
 
-    useEffect(() => {
-        const dettagliPromozioneModal = document.getElementById('dettagliPromozioneModal')!
-        dettagliPromozioneModal.addEventListener('show.bs.modal', (event: any) => {
-            const button = event.relatedTarget
-            const id = button.getAttribute('data-bs-whatever')
-            const url = `${UrlBase.API_PROMOZIONE}/${id}`;
-            fetch(url, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                setPromozione(result);
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-        });
-    }, []);
+    const { promozione } = usePromozione()
 
     return (
         <div className="modal fade" id="dettagliPromozioneModal" tabIndex={-1} role="dialog" aria-labelledby="dettagliPromozioneModalLabel" aria-hidden="true" data-bs-backdrop="static">
