@@ -5,7 +5,7 @@ import { usePromozioni } from '../../promozione/hooks/usePromozioni';
 
 export default function ModificaProdotto() {
     
-    const marche = useMarche()
+    const { marche } = useMarche()
     const promozioni = usePromozioni()
     const { prodotto, change, submitPut } = useProdotto()
 
@@ -23,9 +23,7 @@ export default function ModificaProdotto() {
                     </div>
 
                     <div className="modal-body">
-                        <form className="w-100 px-3" 
-                        // onSubmit={submitPut}
-                        >
+                        <form className="w-100 px-3">
 
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Nome</label>

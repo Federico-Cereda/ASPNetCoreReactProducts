@@ -17,7 +17,7 @@ export function useMarcaCrea() {
         setMarca({ ...initialData });
     };
 
-    const submitPost = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const submitPost = (e: any) => {
         e.preventDefault();
         const url = UrlBase.API_MARCA;
         fetch(url, {
@@ -28,9 +28,10 @@ export function useMarcaCrea() {
             body: JSON.stringify(marca)
         })
         .then(response => response.json())
+        // .then(state => setMarche({ ...state }))
         .then(responseFromServer => {
             console.log(responseFromServer);
-            window.location.reload();
+            // window.location.reload();
         })
         .catch((error) => {
             console.log(error);

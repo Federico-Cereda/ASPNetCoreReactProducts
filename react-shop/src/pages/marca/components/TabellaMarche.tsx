@@ -3,7 +3,7 @@ import { useMarche } from '../hooks/useMarche';
 
 export default function TabellaMarche() {
 
-    const marche = useMarche()
+    const { marche } = useMarche()
 
     return (
         <div className="text-center">

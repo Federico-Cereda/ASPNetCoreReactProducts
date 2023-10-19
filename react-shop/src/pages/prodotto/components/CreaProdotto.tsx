@@ -2,14 +2,17 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useProdottoCrea } from '../hooks/useProdottoCrea';
 import { useMarche } from '../../marca/hooks/useMarche';
 import { usePromozioni } from '../../promozione/hooks/usePromozioni';
+import CreaMarca from '../../marca/components/CreaMarca';
+import CreaPromozione from '../../promozione/components/CreaPromozione';
 
 export default function CreaProdotto() {
 
-    const marche = useMarche()
+    const { marche } = useMarche()
     const promozioni = usePromozioni()
     const { prodotto, change, close, submitPost } = useProdottoCrea()
 
     return (
+        <>
         <div className="modal fade" id="creaProdottoModal" tabIndex={-1} role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div className="modal-dialog modal-lg" role="document">
 
@@ -23,9 +26,7 @@ export default function CreaProdotto() {
                     </div>
 
                     <div className="modal-body">
-                        <form className="w-100 px-3" 
-                        // onSubmit={submitPost}
-                        >
+                        <form className="w-100 px-3">
 
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Nome</label>
@@ -51,7 +52,7 @@ export default function CreaProdotto() {
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Marca</label>
                                 <div className="col-sm-6">
-                                    <select className="form-select" name="idMarca" value={prodotto.idMarca} onChange={change} >
+                                    <select className="form-select" name="idMarca" value={prodotto.idMarca} onChange={change}>
                                         <option value={0}>Nessuna</option>
                                         {marche.map((marca) => (
                                             <option key={marca.id} value={marca.id}>
@@ -66,7 +67,7 @@ export default function CreaProdotto() {
                             <div className="form-group row my-4">
                                 <label className="h3 col-sm-2 col-form-label">Promozione</label>
                                 <div className="col-sm-6">
-                                    <select className="form-select" name="idPromozione" value={prodotto.idPromozione} onChange={change}  >
+                                    <select className="form-select" name="idPromozione" value={prodotto.idPromozione} onChange={change}>
                                         <option value={0}>Nessuna</option>
                                         {promozioni.map((promozione) => (
                                             <option key={promozione.id} value={promozione.id}>
@@ -92,6 +93,9 @@ export default function CreaProdotto() {
 
             </div>
         </div>
+        <CreaMarca />
+        <CreaPromozione />
+        </>
     );
 
 };
