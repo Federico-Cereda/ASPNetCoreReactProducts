@@ -10,26 +10,9 @@ export function useMarche() {
     };
     const [marca, setMarca] = useState<Marca>(initialData)
 
-    // const getMarche = () => {
-    //     setTimeout(() => {
-    //         const url = UrlBase.API_MARCA;
-    //         fetch(url, {
-    //             method: 'GET'
-    //         })
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             setMarche(result);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //             alert(error);
-    //         });
-    //         console.log('GET')
-    //     }, 20000)
-    // };
-
-    useEffect(() => {
-        setTimeout(() => {
+    const getMarche = () => {
+        useEffect(() => {
+        // setTimeout(() => {
         const url = UrlBase.API_MARCA;
         fetch(url, {
             method: 'GET'
@@ -43,8 +26,9 @@ export function useMarche() {
             alert(error);
         });
         console.log('GET')
-    }, 2000)
+    // }, 2000)
     }, []);
+    };
 
     const change = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setMarca(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -65,7 +49,11 @@ export function useMarche() {
             body: JSON.stringify(marca)
         })
         .then(response => response.json())
-        // .then(state => setMarche({ ...state }))
+
+        .then(response => {
+            setMarche(state => [...state, response.data])
+        })
+
         .then(responseFromServer => {
             console.log(responseFromServer);
             // window.location.reload();
@@ -81,7 +69,7 @@ export function useMarche() {
         marca,
         change,
         close, 
-        // getMarche, 
+        getMarche, 
         submitPost
     }
 

@@ -7,9 +7,11 @@ import CreaPromozione from '../../promozione/components/CreaPromozione';
 
 export default function CreaProdotto() {
 
-    const { marche } = useMarche()
+    const { marche, getMarche } = useMarche()
     const promozioni = usePromozioni()
     const { prodotto, change, close, submitPost } = useProdottoCrea()
+
+    getMarche();
 
     return (
         <>

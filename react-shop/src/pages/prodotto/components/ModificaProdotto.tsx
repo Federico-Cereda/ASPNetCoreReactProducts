@@ -5,9 +5,11 @@ import { usePromozioni } from '../../promozione/hooks/usePromozioni';
 
 export default function ModificaProdotto() {
     
-    const { marche } = useMarche()
+    const { marche, getMarche } = useMarche()
     const promozioni = usePromozioni()
     const { prodotto, change, submitPut } = useProdotto()
+
+    getMarche();
 
     return (
         <div className="modal fade" id="modificaProdottoModal" tabIndex={-1} role="dialog" aria-labelledby="modificaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
