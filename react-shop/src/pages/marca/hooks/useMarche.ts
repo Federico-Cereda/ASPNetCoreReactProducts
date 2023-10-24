@@ -50,9 +50,10 @@ export function useMarche() {
         })
         .then(response => response.json())
 
-        .then(response => {
-            setMarche(state => [...state, response.data])
-        })
+        // .then(response => {
+        //     console.log(marche)
+        //     setMarche(state => [...state, response.data])
+        // })
 
         .then(responseFromServer => {
             console.log(responseFromServer);

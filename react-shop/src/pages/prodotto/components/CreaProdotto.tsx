@@ -1,21 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useProdottoCrea } from '../hooks/useProdottoCrea';
-import { useMarche } from '../../marca/hooks/useMarche';
+// import { useMarche } from '../../marca/hooks/useMarche';
 import { usePromozioni } from '../../promozione/hooks/usePromozioni';
-import CreaMarca from '../../marca/components/CreaMarca';
-import CreaPromozione from '../../promozione/components/CreaPromozione';
+import ListaMarche from './ListaMarche';
 
 export default function CreaProdotto() {
 
-    const { marche, getMarche } = useMarche()
+    // const { marche, getMarche } = useMarche()
     const promozioni = usePromozioni()
     const { prodotto, change, close, submitPost } = useProdottoCrea()
 
-    getMarche();
+    // getMarche();
 
     return (
-        <>
-        <div className="modal fade" id="creaProdottoModal" tabIndex={-1} role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div className="modal fade" id="creaProdottoModal" tabIndex={-1} role="dialog" aria-labelledby="creaProdottoModalLabel" aria-hidden="true" 
+        // data-bs-backdrop="static"
+        >
             <div className="modal-dialog modal-lg" role="document">
 
                 <div className="modal-content">
@@ -54,14 +54,15 @@ export default function CreaProdotto() {
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Marca</label>
                                 <div className="col-sm-6">
-                                    <select className="form-select" name="idMarca" value={prodotto.idMarca} onChange={change}>
+                                    <ListaMarche />
+                                    {/* <select className="form-select" name="idMarca" value={prodotto.idMarca} onChange={change}>
                                         <option value={0}>Nessuna</option>
                                         {marche.map((marca) => (
                                             <option key={marca.id} value={marca.id}>
                                                 {marca.nome}
                                             </option>
                                         ))}
-                                    </select>
+                                    </select> */}
                                 </div>
                                 <button type="button" className="btn btn-outline-success btn-sm col-sm-4" data-bs-toggle="modal" data-bs-target="#creaMarcaModal">Aggiungi nuova marca</button>
                             </div>

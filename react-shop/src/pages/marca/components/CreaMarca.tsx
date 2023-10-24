@@ -6,7 +6,9 @@ export default function CreaMarca() {
     const { marca, change, close, submitPost } = useMarche()
 
     return (
-        <div className="modal fade" id="creaMarcaModal" tabIndex={-1} role="dialog" aria-labelledby="creaMarcaModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div className="modal fade" id="creaMarcaModal" tabIndex={-1} role="dialog" aria-labelledby="creaMarcaModalLabel" aria-hidden="true" 
+        // data-bs-backdrop="static"
+        >
             <div className="modal-dialog" role="document">
 
                 <div className="modal-content">
