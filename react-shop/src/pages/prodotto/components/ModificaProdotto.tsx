@@ -1,12 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useProdotto } from '../hooks/useProdotto';
-import { useMarche } from '../../marca/hooks/useMarche';
-import { usePromozioni } from '../../promozione/hooks/usePromozioni';
+import ListaMarche from './ListaMarche';
+import ListaPromozioni from './ListaPromozioni';
 
 export default function ModificaProdotto() {
     
-    const marche = useMarche()
-    const promozioni = usePromozioni()
     const { prodotto, change, submitPut } = useProdotto()
 
     return (
@@ -23,9 +21,7 @@ export default function ModificaProdotto() {
                     </div>
 
                     <div className="modal-body">
-                        <form className="w-100 px-3" 
-                        // onSubmit={submitPut}
-                        >
+                        <form className="w-100 px-3">
 
                             <div className="form-group row mt-4">
                                 <label className="h3 col-sm-2 col-form-label">Nome</label>
@@ -53,11 +49,7 @@ export default function ModificaProdotto() {
                                 <div className="col-sm-6">
                                     <select className="form-select" value={prodotto.idMarca} name="idMarca" onChange={change}>
                                         <option value={0}>Nessuna</option>
-                                        {marche.map((marca) => (
-                                            <option key={marca.id} value={marca.id}>
-                                                {marca.nome}
-                                            </option>
-                                        ))}
+                                        <ListaMarche />
                                     </select>
                                 </div>
                                 <button type="button" className="btn btn-outline-success btn-sm col-sm-4" data-bs-toggle="modal" data-bs-target="#creaMarcaModal">Aggiungi nuova marca</button>
@@ -68,11 +60,7 @@ export default function ModificaProdotto() {
                                 <div className="col-sm-6">
                                     <select className="form-select" value={prodotto.idPromozione} name="idPromozione" onChange={change}>
                                         <option value={0}>Nessuna</option>
-                                        {promozioni.map((promozione) => (
-                                            <option key={promozione.id} value={promozione.id}>
-                                                {promozione.nome}
-                                            </option>
-                                        ))}
+                                        <ListaPromozioni />
                                     </select>
                                 </div>
                                 <button type="button" className="btn btn-outline-success btn-sm col-sm-4" data-bs-toggle="modal" data-bs-target="#creaPromozioneModal">Aggiungi nuova promozione</button>

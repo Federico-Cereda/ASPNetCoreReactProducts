@@ -14,7 +14,7 @@ export default function CreaMarca() {
                     <div className="modal-header">
 
                         <h5 className="modal-title" id="creaMarcaModalLabel">Nuova marca</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={close}></button>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#creaProdottoModal" onClick={close}></button>
 
                     </div>
 
@@ -33,8 +33,8 @@ export default function CreaMarca() {
 
                     <div className="modal-footer">
                         
-                        <button type="button" className="close btn btn-light" data-bs-dismiss="modal" aria-label="Close" onClick={close}>Annulla</button>
-                        <button type="button" className="btn btn-success ms-2" onClick={submitPost}>Aggiungi</button>
+                        <button type="button" className="close btn btn-light" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#creaProdottoModal" onClick={close}>Annulla</button>
+                        <button type="button" className="btn btn-success ms-2" data-bs-toggle="modal" data-bs-target="#creaProdottoModal" onClick={submitPost}>Aggiungi</button>
 
                     </div>
 
