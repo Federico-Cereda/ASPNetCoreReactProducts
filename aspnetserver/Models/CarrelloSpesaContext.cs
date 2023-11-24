@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace aspnetserver.Models;
 
-public partial class CarrelloSpesaContext : DbContext
+public sealed partial class CarrelloSpesaContext : DbContext
 {
     public CarrelloSpesaContext()
     {
@@ -15,11 +15,13 @@ public partial class CarrelloSpesaContext : DbContext
     {
     }
 
-    public virtual DbSet<Marca> Marca { get; set; }
+    public DbSet<Marca> Marca { get; set; }
 
-    public virtual DbSet<Prodotto> Prodotto { get; set; }
+    public DbSet<Prodotto> Prodotto { get; set; }
 
-    public virtual DbSet<Promozione> Promozione { get; set; }
+    public DbSet<Promozione> Promozione { get; set; }
+
+    public DbSet<Utente> Utente { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=tcp:eudbs-sql.database.windows.net,1433;Initial Catalog=CarrelloSpesa;Persist Security Info=False;User ID=azureuser;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
