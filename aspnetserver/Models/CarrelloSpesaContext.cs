@@ -21,7 +21,7 @@ public sealed partial class CarrelloSpesaContext : DbContext
 
     public DbSet<Promozione> Promozione { get; set; }
 
-    public DbSet<Utente> Utente { get; set; }
+    public DbSet<Utente> Utenti { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=tcp:eudbs-sql.database.windows.net,1433;Initial Catalog=CarrelloSpesa;Persist Security Info=False;User ID=azureuser;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
