@@ -22,25 +22,26 @@ namespace aspnetserver.Services
             {
                 Username = resource.Username,
                 Email = resource.Email,
-                PasswordSalt = PasswordHasher.GenerateSalt()
+                PasswordSalt = PasswordHasher.GenerateSalt(),
+                IdRuolo = resource.IdRuolo
             };
             utente.PasswordHash = PasswordHasher.ComputeHash(resource.Password, utente.PasswordSalt, _pepper, _iteration);
-            await _context.Utenti.AddAsync(utente, cancellationToken);
+            await _context.Utente.AddAsync(utente, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new UtenteResource(utente.Id, utente.Username, utente.Email);
+            return new UtenteResource(utente.Id, utente.Username, utente.Email, utente.IdRuolo);
         }
 
         public async Task<UtenteResource> Login(LoginResource resource, CancellationToken cancellationToken)
         {
-            var utente = await _context.Utenti.FirstOrDefaultAsync(x => x.Username == resource.Username, cancellationToken);
+            var utente = await _context.Utente.FirstOrDefaultAsync(x => x.Username == resource.Username, cancellationToken);
             
             if (utente == null) throw new Exception("Username or password did not match.");
 
             var passwordHash = PasswordHasher.ComputeHash(resource.Password,utente.PasswordSalt, utente.PasswordSalt,  _iteration);
             if(utente.PasswordHash != passwordHash) throw new Exception("Username or password did not match.");
 
-            return new UtenteResource(utente.Id, utente.Username, utente.Email);
+            return new UtenteResource(utente.Id, utente.Username, utente.Email,utente.IdRuolo);
         }
     }
 }

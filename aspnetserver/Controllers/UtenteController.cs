@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetserver.Controllers
 {
-    //[Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("utente")]
     public class UtenteController : ControllerBase
     {
         private readonly IUtenteService _utenteService;
@@ -17,7 +16,7 @@ namespace aspnetserver.Controllers
             _utenteService = utenteService;
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterResource resource, CancellationToken cancellationToken)
         {
             try
@@ -31,7 +30,7 @@ namespace aspnetserver.Controllers
             }
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginResource resource, CancellationToken cancellationToken)
         {
             try
