@@ -65,6 +65,18 @@ public sealed partial class CarrelloSpesaContext : DbContext
             entity.Property(e => e.Nome).HasMaxLength(256);
         });
 
+        modelBuilder.Entity<Utente>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_dbo.Utente");
+
+            entity.HasIndex(e => e.Email).IsUnique();
+
+            entity.ToTable("Utente");
+
+            entity.Property(e => e.Username).HasMaxLength(50);
+            entity.Property(e => e.Email).HasMaxLength(50);
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 
