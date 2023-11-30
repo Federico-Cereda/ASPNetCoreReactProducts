@@ -11,6 +11,10 @@ const Register = () => {
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
 
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
@@ -46,7 +50,7 @@ const Register = () => {
         setErrMsg('');
     }, [user, pwd, matchPwd])
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
@@ -57,9 +61,39 @@ const Register = () => {
         // console.log(user, pwd);
         // setSuccess(true);
         try {
-            const response = await 
+            const response = await axios.post(REGISTER_URL, 
+                JSON.stringify({ user, pwd,  }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(response.data);
+            console.log(response.accessToken);
+            console.log(JSON.stringify(response))
+            // const url = UrlBase;
+            // const response = await fetch(url, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-type': 'application/json'
+            //     },
+            //     body: JSON.stringify({ user, pwd,  })
+            // })
+            // .then(response => response.json())
+            // .then(responseFromServer => {
+            //     console.log(responseFromServer);
+            //     window.location.reload();
+            // });
+            setSuccess(true);
         } catch (err) {
-
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed');
+            }
+            errRef.current.focus();
         }
     }
 
@@ -108,6 +142,41 @@ const Register = () => {
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
+
+
+
+
+
+                        <label htmlFor="email">
+                            E-mail:
+                            <span className={validEmail ? "valid" : "hide"}>
+                                {/* <FontAwesomeIcon icon={faCheck} /> */}
+                            </span>
+                            <span className={validEmail || !email ? "hide" : "invalid"}>
+                                {/* <FontAwesomeIcon icon={faTimes} /> */}
+                            </span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="email" 
+                            ref={userRef} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            required 
+                            aria-invalid={validEmail ? "false" : "true"} 
+                            aria-describedby="emailnote" 
+                            onFocus={() => setEmailFocus(true)} 
+                            onBlur={() => setEmailFocus(false)} 
+                        />
+                        <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                            {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                            {/* 4 to 24 characters.<br />
+                            Must begin with a letter.<br />
+                            Letters, numbers, underscores, hyphens allowed. */}
+                        </p>
+
+
+
+
 
                         <label htmlFor="password">
                             Password:
