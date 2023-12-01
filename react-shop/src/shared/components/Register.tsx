@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { UrlBase } from "..";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
-    const userRef = useRef();
-    const errRef = useRef();
+    const userRef = useRef<any>();
+    const emailRef = useRef<any>();
+    const errRef = useRef<any>();
 
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
@@ -31,11 +34,22 @@ const Register = () => {
     }, [])
 
     useEffect(() => {
+        emailRef.current.focus();
+    }, [])
+
+    useEffect(() => {
         const result = USER_REGEX.test(user);
         console.log(result);
         console.log(user);
         setValidName(result);
     }, [user])
+
+    useEffect(() => {
+        const result = EMAIL_REGEX.test(email);
+        console.log(result);
+        console.log(email);
+        setValidEmail(result);
+    }, [email])
 
     useEffect(() => {
         const result = PWD_REGEX.test(pwd);
@@ -48,50 +62,46 @@ const Register = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd])
+    }, [user, email, pwd, matchPwd])
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(pwd);
-        if(!v1 || !v2) {
+        const v2 = EMAIL_REGEX.test(email);
+        const v3 = PWD_REGEX.test(pwd);
+        if(!v1 || !v2 || !v3) {
             setErrMsg("Invalid Entry");
             return;
         }
-        // console.log(user, pwd);
-        // setSuccess(true);
         try {
-            const response = await axios.post(REGISTER_URL, 
-                JSON.stringify({ user, pwd,  }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(response.data);
-            console.log(response.accessToken);
+            // const response = await axios.post(UrlBase.API_REGISTER, 
+            //     JSON.stringify({ user, email, pwd }),
+            //     {
+            //         headers: { 'Content-Type': 'application/json' },
+            //         withCredentials: true
+            //     }
+            // );
+            // console.log(response.data);
+            // console.log(response.accessToken);
+            // console.log(JSON.stringify(response))
+            const url = UrlBase.API_REGISTER;
+            const idRole = 1;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ user, email, pwd, idRole })
+            })
             console.log(JSON.stringify(response))
-            // const url = UrlBase;
-            // const response = await fetch(url, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-type': 'application/json'
-            //     },
-            //     body: JSON.stringify({ user, pwd,  })
-            // })
-            // .then(response => response.json())
-            // .then(responseFromServer => {
-            //     console.log(responseFromServer);
-            //     window.location.reload();
-            // });
             setSuccess(true);
-        } catch (err) {
+        } catch (err : any) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg('Nessuna risposta del server.');
             } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+                setErrMsg('E-mail già in uso.');
             } else {
-                setErrMsg('Registration Failed');
+                setErrMsg('Registrazione non riuscita.');
             }
             errRef.current.focus();
         }
@@ -101,9 +111,9 @@ const Register = () => {
         <>
         {success ? (
             <section>
-                <h1>Success!</h1>
+                <h1>Successo!</h1>
                 <p>
-                    <a href="#">Sign In</a>
+                    <a href="#">Accedi</a>
                 </p>
             </section>
         ) : (
@@ -112,7 +122,7 @@ const Register = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : 
                     "offscreen"} aria-live="assertive">{errMsg}</p>
 
-                    <h1>Register</h1>
+                    <h1>Registrazione</h1>
 
                     <form onSubmit={handleSubmit}>
 
@@ -138,14 +148,10 @@ const Register = () => {
                         />
                         <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                            4 to 24 characters.<br />
-                            Must begin with a letter.<br />
-                            Letters, numbers, underscores, hyphens allowed.
+                            Da 4 a 24 caratteri.<br />
+                            Deve iniziare con una lettera.<br />
+                            Sono ammessi lettere, numeri, trattini bassi e trattini.
                         </p>
-
-
-
-
 
                         <label htmlFor="email">
                             E-mail:
@@ -159,7 +165,7 @@ const Register = () => {
                         <input 
                             type="text" 
                             id="email" 
-                            ref={userRef} 
+                            ref={emailRef} 
                             onChange={(e) => setEmail(e.target.value)} 
                             required 
                             aria-invalid={validEmail ? "false" : "true"} 
@@ -169,14 +175,12 @@ const Register = () => {
                         />
                         <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                            {/* 4 to 24 characters.<br />
-                            Must begin with a letter.<br />
-                            Letters, numbers, underscores, hyphens allowed. */}
+                            Deve contenere una <span aria-label="at symbol">@</span>.<br />
+                            L'e-mail e il dominio di primo livello non possono iniziare con un punto.<br />
+                            Non sono permessi due punti consecutivi.<br />
+                            Sono ammessi lettere, numeri, trattini bassi e trattini.<br />
+                            Deve contenere un carattere prima della <span aria-label="at symbol">@</span>.
                         </p>
-
-
-
-
 
                         <label htmlFor="password">
                             Password:
@@ -199,13 +203,13 @@ const Register = () => {
                         />
                         <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                            8 to 24 characters.<br />
-                            Must include uppercase and lowercase letters, a number and a special character.<br />
-                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                            Da 8 a 24 caratteri.<br />
+                            Deve includere lettere maiuscole e minuscole, un numero e un carattere speciale.<br />
+                            Caratteri speciali consentiti: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
                         <label htmlFor="confirm_pwd">
-                            Confirm Password:
+                            Conferma password:
                             <span className={validMatch && matchPwd ? "valid" : "hide"}>
                                 {/* <FontAwesomeIcon icon={faCheck} /> */}
                             </span>
@@ -225,17 +229,17 @@ const Register = () => {
                         />
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                            8 to 24 characters.<br />
-                            Must match the first password input field.
+                            Da 8 a 24 caratteri.<br />
+                            Deve corrispondere alla password inserita sopra.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}>Registrati</button>
                     </form>
 
                     <p>
-                        Already registered?<br />
+                        Sei già registrato?<br />
                         <span className="line">
-                            <a href="#">Sign In</a>
+                            <a href="#">Accedi</a>
                         </span>
                     </p>
 

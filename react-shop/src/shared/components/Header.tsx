@@ -19,6 +19,9 @@ export function Header() {
                     <li className="nav-item mx-3">
                         <NavLink to="/promozioni" className="nav-link font-weight-bolder text-uppercase">Promozioni</NavLink>
                     </li>
+                    <li className="nav-item mx-3">
+                        <NavLink to="/registrazione" className="nav-link font-weight-bolder text-uppercase">Registrazione</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>
