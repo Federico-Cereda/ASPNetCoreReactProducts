@@ -17,11 +17,11 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterResource resource, CancellationToken cancellationToken)
+        public async Task<IActionResult> Register([FromBody] RegisterResource resource)
         {
             try
             {
-                var response = await _utenteService.Register(resource, cancellationToken);
+                var response = await _utenteService.Register(resource);
                 return Ok(response);
             }
             catch (Exception e)
@@ -31,11 +31,11 @@ namespace aspnetserver.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginResource resource, CancellationToken cancellationToken)
+        public async Task<IActionResult> Login([FromBody] LoginResource resource)
         {
             try
             {
-                var response = await _utenteService.Login(resource, cancellationToken);
+                var response = await _utenteService.Login(resource);
                 return Ok(response);
             }
             catch (Exception e)

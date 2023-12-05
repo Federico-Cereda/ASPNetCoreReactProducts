@@ -1,5 +1,6 @@
 ﻿using aspnetserver.Models;
 using aspnetserver.Resources;
+using aspnetserver.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace aspnetserver.Services
@@ -13,10 +14,10 @@ namespace aspnetserver.Services
         public UtenteService(CarrelloSpesaContext context)
         {
             _context = context;
-            _pepper = Environment.GetEnvironmentVariable("PasswordHashExamplePepper");
+            _pepper = Environment.GetEnvironmentVariable("Pepper");
         }
 
-        public async Task<UtenteResource> Register(RegisterResource resource, CancellationToken cancellationToken)
+        public async Task<UtenteResource> Register(RegisterResource resource)
         {
             var utente = new Utente
             {
@@ -26,20 +27,18 @@ namespace aspnetserver.Services
                 IdRuolo = resource.IdRuolo
             };
             utente.PasswordHash = PasswordHasher.ComputeHash(resource.Password, utente.PasswordSalt, _pepper, _iteration);
-            await _context.Utente.AddAsync(utente, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
+            await _context.Utente.AddAsync(utente);
+            await _context.SaveChangesAsync();
 
             return new UtenteResource(utente.Id, utente.Username, utente.Email, utente.IdRuolo);
         }
 
-        public async Task<UtenteResource> Login(LoginResource resource, CancellationToken cancellationToken)
+        public async Task<UtenteResource> Login(LoginResource resource)
         {
-            var utente = await _context.Utente.FirstOrDefaultAsync(x => x.Email == resource.Email, cancellationToken);
-            
+            var utente = await _context.Utente.FirstOrDefaultAsync(x => x.Email == resource.Email);
             if (utente == null) throw new Exception("Email or password did not match.");
 
             var passwordHash = PasswordHasher.ComputeHash(resource.Password,utente.PasswordSalt, _pepper,  _iteration);
-
             if(utente.PasswordHash != passwordHash) throw new Exception("Email or password did not match.");
 
             return new UtenteResource(utente.Id, utente.Username, utente.Email,utente.IdRuolo);

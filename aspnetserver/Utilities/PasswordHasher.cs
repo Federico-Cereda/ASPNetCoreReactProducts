@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace aspnetserver.Services
+namespace aspnetserver.Utilities
 {
     public static class PasswordHasher
     {
