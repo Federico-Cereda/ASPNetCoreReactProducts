@@ -6,8 +6,10 @@ import ProdottiPage from './pages/prodotto/ProdottiPage'
 import MarchePage from './pages/marca/MarchePage'
 import PromozioniPage from './pages/promozione/PromozioniPage'
 import Register from './shared/components/Register'
+import { useRegister } from './shared/components/useRegister'
 
 function App() {
+  const { isOpen } = useRegister()
 
   return (
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
+    
+    { isOpen && <Register /> }
 
     <Footer />
 

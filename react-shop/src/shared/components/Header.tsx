@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink } from 'react-router-dom';
+import { useRegister } from './useRegister';
 
 export function Header() {
+    const { toggle } = useRegister()
 
     return (
         <div className="header w-100 bg-secondary position-fixed h-100% d-inline-block">
@@ -24,6 +26,13 @@ export function Header() {
                     </li>
                 </ul>
             </nav>
+
+            <button onClick={toggle} className="btn accent lg">
+                Registrati
+            </button>
+
+            {/* { isOpen && <Register /> } */}
+
         </div>
     )
 
