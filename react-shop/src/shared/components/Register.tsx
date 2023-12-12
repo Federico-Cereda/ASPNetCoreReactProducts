@@ -3,12 +3,14 @@ import { UrlBase } from "..";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import './Register.css';
+import { useRegister } from "./useRegister";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
+    const { close } = useRegister()
     const userRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
@@ -112,126 +114,134 @@ const Register = () => {
                 </p>
             </section>
         ) : (
-                <section>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Registrazione</h1>
-                    <form onSubmit={handleSubmit}>
+                <section className="popup">
+                    <div className="popup-inner">
 
-                        <div className="form-group mt-4">
-                            <label htmlFor="username">
-                                Username:
-                                <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
-                            </label> <br />
-                            <input 
-                                type="text" 
-                                id="username" 
-                                ref={userRef} 
-                                autoComplete="off" 
-                                onChange={(e) => setUser(e.target.value)} 
-                                value={user} 
-                                required 
-                                aria-invalid={validName ? "false" : "true"} 
-                                aria-describedby="uidnote" 
-                                onFocus={() => setUserFocus(true)} 
-                                onBlur={() => setUserFocus(false)} 
-                            />
-                            <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
-                                <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
-                                Da 4 a 24 caratteri.<br />
-                                Deve iniziare con una lettera.<br />
-                                Sono ammessi lettere, numeri, trattini bassi e trattini.
-                            </p>
+                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
+                        <div className="d-grid gap-2 d-md-flex justify-content-md-between">
+                            <h2>Registrazione</h2>
+                            <button type="button" className="btn-close" onClick={close}></button>
                         </div>
 
-                        <div className="form-group mt-4">
-                            <label htmlFor="email">
-                                E-mail:
-                                <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
-                            </label> <br />
-                            <input 
-                                type="text" 
-                                id="email" 
-                                ref={emailRef} 
-                                autoComplete="off" 
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email} 
-                                required 
-                                aria-invalid={validEmail ? "false" : "true"} 
-                                aria-describedby="emailnote" 
-                                onFocus={() => setEmailFocus(true)} 
-                                onBlur={() => setEmailFocus(false)} 
-                            />
-                            <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
-                                <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
-                                Deve contenere una <span aria-label="at symbol">@</span>.<br />
-                                L'e-mail e il dominio di primo livello non possono iniziare con un punto.<br />
-                                Non sono permessi due punti consecutivi.<br />
-                                Sono ammessi lettere, numeri, trattini bassi e trattini.<br />
-                                Deve contenere un carattere prima della <span aria-label="at symbol">@</span>.
-                            </p>
-                        </div>
+                        <form onSubmit={handleSubmit}>
 
-                        <div className="form-group mt-4">
-                            <label htmlFor="password">
-                                Password:
-                                <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
-                            </label> <br />
-                            <input 
-                                type="password" 
-                                id="password" 
-                                onChange={(e) => setPwd(e.target.value)} 
-                                value={pwd}
-                                required 
-                                aria-invalid={validPwd ? "false" : "true"} 
-                                aria-describedby="pwdnote" 
-                                onFocus={() => setPwdFocus(true)} 
-                                onBlur={() => setPwdFocus(false)} 
-                            />
-                            <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                                <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
-                                Da 8 a 24 caratteri.<br />
-                                Deve includere lettere maiuscole e minuscole, un numero e un carattere speciale.<br />
-                                Caratteri speciali consentiti: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
-                            </p>
-                        </div>
+                            <div className="form-group mt-3">
+                                <label htmlFor="username">
+                                    Username:
+                                    <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                                    <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
+                                </label> <br />
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    ref={userRef} 
+                                    autoComplete="off" 
+                                    onChange={(e) => setUser(e.target.value)} 
+                                    value={user} 
+                                    required 
+                                    aria-invalid={validName ? "false" : "true"} 
+                                    aria-describedby="uidnote" 
+                                    onFocus={() => setUserFocus(true)} 
+                                    onBlur={() => setUserFocus(false)} 
+                                />
+                                <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                                    <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
+                                    Da 4 a 24 caratteri.<br />
+                                    Deve iniziare con una lettera.<br />
+                                    Sono ammessi lettere, numeri, trattini bassi e trattini.
+                                </p>
+                            </div>
 
-                        <div className="form-group mt-4">
-                            <label htmlFor="confirm_pwd">
-                                Conferma password:
-                                <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
-                            </label> <br />
-                            <input 
-                                type="password" 
-                                id="confirm_pwd" 
-                                onChange={(e) => setMatchPwd(e.target.value)} 
-                                value={matchPwd} 
-                                required 
-                                aria-invalid={validMatch ? "false" : "true"} 
-                                aria-describedby="confirmnote" 
-                                onFocus={() => setMatchFocus(true)} 
-                                onBlur={() => setMatchFocus(false)} 
-                            />
-                            <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
-                                <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
-                                Da 8 a 24 caratteri.<br />
-                                Deve corrispondere alla password inserita sopra.
-                            </p>
-                        </div>
+                            <div className="form-group mt-3">
+                                <label htmlFor="email">
+                                    E-mail:
+                                    <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                                    <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
+                                </label> <br />
+                                <input 
+                                    type="text" 
+                                    id="email" 
+                                    ref={emailRef} 
+                                    autoComplete="off" 
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email} 
+                                    required 
+                                    aria-invalid={validEmail ? "false" : "true"} 
+                                    aria-describedby="emailnote" 
+                                    onFocus={() => setEmailFocus(true)} 
+                                    onBlur={() => setEmailFocus(false)} 
+                                />
+                                <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                                    <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
+                                    Deve contenere una <span aria-label="at symbol">@</span>.<br />
+                                    L'e-mail e il dominio di primo livello non possono iniziare con un punto.<br />
+                                    Non sono permessi due punti consecutivi.<br />
+                                    Sono ammessi lettere, numeri, trattini bassi e trattini.<br />
+                                    Deve contenere un carattere prima della <span aria-label="at symbol">@</span>.
+                                </p>
+                            </div>
 
-                        <button className="btn btn-sm mt-4" disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}>Registrati</button>
-                    </form>
+                            <div className="form-group mt-3">
+                                <label htmlFor="password">
+                                    Password:
+                                    <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                                    <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                                </label> <br />
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    onChange={(e) => setPwd(e.target.value)} 
+                                    value={pwd}
+                                    required 
+                                    aria-invalid={validPwd ? "false" : "true"} 
+                                    aria-describedby="pwdnote" 
+                                    onFocus={() => setPwdFocus(true)} 
+                                    onBlur={() => setPwdFocus(false)} 
+                                />
+                                <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                                    <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
+                                    Da 8 a 24 caratteri.<br />
+                                    Deve includere lettere maiuscole e minuscole, un numero e un carattere speciale.<br />
+                                    Caratteri speciali consentiti: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                                </p>
+                            </div>
 
-                    <p className="mt-4">
-                        Sei già registrato?<br />
-                        <span className="d-inline-block">
-                            <a href="#">Accedi</a>
-                        </span>
-                    </p>
+                            <div className="form-group mt-3">
+                                <label htmlFor="confirm_pwd">
+                                    Conferma password:
+                                    <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
+                                    <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
+                                </label> <br />
+                                <input 
+                                    type="password" 
+                                    id="confirm_pwd" 
+                                    onChange={(e) => setMatchPwd(e.target.value)} 
+                                    value={matchPwd} 
+                                    required 
+                                    aria-invalid={validMatch ? "false" : "true"} 
+                                    aria-describedby="confirmnote" 
+                                    onFocus={() => setMatchFocus(true)} 
+                                    onBlur={() => setMatchFocus(false)} 
+                                />
+                                <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+                                    <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
+                                    Da 8 a 24 caratteri.<br />
+                                    Deve corrispondere alla password inserita sopra.
+                                </p>
+                            </div>
 
+                            <button className="btn btn-sm mt-3" disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}>Registrati</button>
+                        </form>
+
+                        <p className="mt-3">
+                            Sei già registrato?<br />
+                            <span className="d-inline-block">
+                                <a href="#">Accedi</a>
+                            </span>
+                        </p>
+
+                    </div>
                 </section>
             )}
         </>

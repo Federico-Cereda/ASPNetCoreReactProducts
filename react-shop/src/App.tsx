@@ -23,7 +23,6 @@ function App() {
         <Route path="/prodotti" element={<ProdottiPage />} />
         <Route path="/marche" element={<MarchePage />} />
         <Route path="/promozioni" element={<PromozioniPage />} />
-        <Route path="/registrazione" element={<Register />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
