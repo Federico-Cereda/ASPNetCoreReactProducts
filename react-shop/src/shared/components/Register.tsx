@@ -107,11 +107,13 @@ const Register = () => {
     return (
         <>
         {success ? (
-            <section>
-                <h1>Registrazione effettuata correttamente!</h1>
-                <p>
-                    <a href="#">Accedi</a>
-                </p>
+            <section className="popup">
+                <div className="popup-inner">
+                    <p className="text-center text-muted">
+                        <h6>Registrazione effettuata correttamente!</h6>
+                        <a href="#" className="fw-bold text-body ms-1">Accedi</a>
+                    </p>
+                </div>
             </section>
         ) : (
                 <section className="popup">
