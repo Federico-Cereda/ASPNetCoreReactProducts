@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useRegister } from './useRegister';
 
 export function Header() {
-    const { toggle } = useRegister()
+    const { open } = useRegister()
 
     return (
         <header className="p-3 text-bg-dark">
@@ -24,7 +24,7 @@ export function Header() {
                         </li>
                     </ul>
 
-                    <button onClick={toggle} className="btn btn-outline-light me-2">
+                    <button onClick={open} className="btn btn-outline-light me-2">
                         Registrati
                     </button>
                     

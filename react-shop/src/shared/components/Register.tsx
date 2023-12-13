@@ -128,9 +128,11 @@ const Register = () => {
 
                             <div className="form-group mt-3">
                                 <label htmlFor="username">
-                                    Username:
-                                    <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                                    <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
+                                    <h6>
+                                        Username
+                                        <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                                        <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
+                                    </h6>
                                 </label> <br />
                                 <input 
                                     type="text" 
@@ -144,6 +146,7 @@ const Register = () => {
                                     aria-describedby="uidnote" 
                                     onFocus={() => setUserFocus(true)} 
                                     onBlur={() => setUserFocus(false)} 
+                                    className="form-control" 
                                 />
                                 <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
@@ -155,9 +158,11 @@ const Register = () => {
 
                             <div className="form-group mt-3">
                                 <label htmlFor="email">
-                                    E-mail:
-                                    <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
-                                    <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
+                                    <h6>
+                                        E-mail
+                                        <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                                        <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
+                                    </h6>
                                 </label> <br />
                                 <input 
                                     type="text" 
@@ -171,22 +176,23 @@ const Register = () => {
                                     aria-describedby="emailnote" 
                                     onFocus={() => setEmailFocus(true)} 
                                     onBlur={() => setEmailFocus(false)} 
+                                    className="form-control" 
                                 />
                                 <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
-                                    Deve contenere una <span aria-label="at symbol">@</span>.<br />
                                     L'e-mail e il dominio di primo livello non possono iniziare con un punto.<br />
-                                    Non sono permessi due punti consecutivi.<br />
+                                    Non sono ammessi punti consecutivi. Deve contenere una <span aria-label="at symbol">@</span> e un carattere prima.<br />
                                     Sono ammessi lettere, numeri, trattini bassi e trattini.<br />
-                                    Deve contenere un carattere prima della <span aria-label="at symbol">@</span>.
                                 </p>
                             </div>
 
                             <div className="form-group mt-3">
                                 <label htmlFor="password">
-                                    Password:
-                                    <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                                    <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                                    <h6>
+                                        Password
+                                        <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                                        <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                                    </h6>
                                 </label> <br />
                                 <input 
                                     type="password" 
@@ -198,6 +204,7 @@ const Register = () => {
                                     aria-describedby="pwdnote" 
                                     onFocus={() => setPwdFocus(true)} 
                                     onBlur={() => setPwdFocus(false)} 
+                                    className="form-control" 
                                 />
                                 <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
@@ -209,9 +216,11 @@ const Register = () => {
 
                             <div className="form-group mt-3">
                                 <label htmlFor="confirm_pwd">
-                                    Conferma password:
-                                    <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
-                                    <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
+                                    <h6>
+                                        Conferma password
+                                        <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
+                                        <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
+                                    </h6>
                                 </label> <br />
                                 <input 
                                     type="password" 
@@ -223,6 +232,7 @@ const Register = () => {
                                     aria-describedby="confirmnote" 
                                     onFocus={() => setMatchFocus(true)} 
                                     onBlur={() => setMatchFocus(false)} 
+                                    className="form-control" 
                                 />
                                 <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} className="me-1" />
@@ -231,14 +241,15 @@ const Register = () => {
                                 </p>
                             </div>
 
-                            <button className="btn btn-sm mt-3" disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}>Registrati</button>
+                            <div className="d-grid gap-2 col-6 mx-auto my-3">
+                                <button className="btn btn-primary" disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}>Registrati</button>
+                            </div>
+
                         </form>
 
-                        <p className="mt-3">
-                            Sei già registrato?<br />
-                            <span className="d-inline-block">
-                                <a href="#">Accedi</a>
-                            </span>
+                        <p className="text-center text-muted">
+                            Sei già registrato?
+                            <a href="#" className="fw-bold text-body ms-1">Accedi</a>
                         </p>
 
                     </div>
