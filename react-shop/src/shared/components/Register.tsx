@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { UrlBase } from "..";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import './Register.css';
+import { UrlBase } from "..";
 import { useRegister } from "./useRegister";
+import { UtenteRegister } from "../../model";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
@@ -68,40 +69,89 @@ const Register = () => {
             setErrMsg("Campo non valido");
             return;
         }
-        try {
-            // const response = await axios.post(UrlBase.API_REGISTER, 
-            //     JSON.stringify({ user, email, pwd }),
-            //     {
-            //         headers: { 'Content-Type': 'application/json' },
-            //         withCredentials: true
-            //     }
-            // );
-            // console.log(response.data);
-            // console.log(response.accessToken);
-            // console.log(JSON.stringify(response))
-            const url = UrlBase.API_REGISTER;
-            const idRole = 1;
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({ user, email, pwd, idRole })
-            })
-            console.log(JSON.stringify(response))
-            setSuccess(true);
-        } catch (err : any) {
-            if (!err?.response) {
-                setErrMsg('Nessuna risposta del server.');
-            } else if (err.response?.status === 409) {
-                setErrMsg('E-mail già in uso.');
-            } else {
-                setErrMsg('Registrazione non riuscita.');
-            }
-            if (errRef.current) {
-                errRef.current.focus();
-            }
+
+    //     try {
+    //         const response = await axios.post(UrlBase.API_REGISTER,
+    //             JSON.stringify({ user, pwd }),
+    //             {
+    //                 headers: { 'Content-Type': 'application/json' },
+    //                 withCredentials: true
+    //             }
+    //     };
+    //     console.log(response?.data);
+    //     console.log(response?.accessToken);
+    //     console.log(JSON.stringify(response));
+    //     setSuccess(true);
+    //     setUser('');
+    //     setPwd('');
+    //     setMatchPwd('');
+    // } catch (err) {
+    //     if (!err?.response) {
+    //         setErrMsg('Nessuna risposta del server.');
+    //     } else if (err.response?.status === 409) {
+    //         setErrMsg('E-mail già in uso.');
+    //     } else {
+    //         setErrMsg('Registrazione non riuscita.')
+    //     }
+    //     errRef.current.focus();
+    // }
+    
+    const url = UrlBase.API_REGISTER;
+    const utente : UtenteRegister = {
+        username: user,
+        email: email,
+        password: pwd,
+        idRuolo: 1
+    };
+
+    // fetch(url, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(utente)
+    // })
+    // .then(response => response.json())
+    // .then(responseFromServer => {
+    //     console.log(responseFromServer);
+    //     setSuccess(true);
+    //     setUser('');
+    //     setEmail('');
+    //     setPwd('');
+    //     setMatchPwd('');
+    // })
+    // .catch((error) => {
+    //     console.log(error);
+    //     alert(error);
+    //     setErrMsg(error);
+    // });
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(utente)
+        });
+        setSuccess(true);
+        setUser('');
+        setEmail('');
+        setPwd('');
+        setMatchPwd('');
+    } catch (error) {
+        if (!error) {
+            setErrMsg('Nessuna risposta del server.');
+        } else if (error === 409) {
+            setErrMsg('E-mail già in uso.');
+        } else {
+            setErrMsg('Registrazione non riuscita.')
         }
+        errRef.current?.focus();
+    }
+
+
+
     }
 
     return (
@@ -109,10 +159,13 @@ const Register = () => {
         {success ? (
             <section className="popup">
                 <div className="popup-inner">
-                    <p className="text-center text-muted">
+                    <div className="d-flex justify-content-end">
+                        <button type="button" className="btn-close" onClick={close}></button>
+                    </div>
+                    <div className="text-center text-muted">
                         <h6>Registrazione effettuata correttamente!</h6>
                         <a href="#" className="fw-bold text-body ms-1">Accedi</a>
-                    </p>
+                    </div>
                 </div>
             </section>
         ) : (
