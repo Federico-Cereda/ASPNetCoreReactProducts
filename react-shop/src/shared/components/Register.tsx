@@ -62,6 +62,7 @@ const Register = () => {
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setErrMsg('');
         const v1 = USER_REGEX.test(user);
         const v2 = EMAIL_REGEX.test(email);
         const v3 = PWD_REGEX.test(pwd);
@@ -69,88 +70,41 @@ const Register = () => {
             setErrMsg("Campo non valido");
             return;
         }
+        const url = UrlBase.API_REGISTER;
+        const utente : UtenteRegister = {
+            username: user,
+            email: email,
+            password: pwd,
+            idRuolo: 1
+        };
 
-    //     try {
-    //         const response = await axios.post(UrlBase.API_REGISTER,
-    //             JSON.stringify({ user, pwd }),
-    //             {
-    //                 headers: { 'Content-Type': 'application/json' },
-    //                 withCredentials: true
-    //             }
-    //     };
-    //     console.log(response?.data);
-    //     console.log(response?.accessToken);
-    //     console.log(JSON.stringify(response));
-    //     setSuccess(true);
-    //     setUser('');
-    //     setPwd('');
-    //     setMatchPwd('');
-    // } catch (err) {
-    //     if (!err?.response) {
-    //         setErrMsg('Nessuna risposta del server.');
-    //     } else if (err.response?.status === 409) {
-    //         setErrMsg('E-mail già in uso.');
-    //     } else {
-    //         setErrMsg('Registrazione non riuscita.')
-    //     }
-    //     errRef.current.focus();
-    // }
-    
-    const url = UrlBase.API_REGISTER;
-    const utente : UtenteRegister = {
-        username: user,
-        email: email,
-        password: pwd,
-        idRuolo: 1
-    };
-
-    // fetch(url, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-type': 'application/json'
-    //     },
-    //     body: JSON.stringify(utente)
-    // })
-    // .then(response => response.json())
-    // .then(responseFromServer => {
-    //     console.log(responseFromServer);
-    //     setSuccess(true);
-    //     setUser('');
-    //     setEmail('');
-    //     setPwd('');
-    //     setMatchPwd('');
-    // })
-    // .catch((error) => {
-    //     console.log(error);
-    //     alert(error);
-    //     setErrMsg(error);
-    // });
-
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(utente)
-        });
-        setSuccess(true);
-        setUser('');
-        setEmail('');
-        setPwd('');
-        setMatchPwd('');
-    } catch (error) {
-        if (!error) {
-            setErrMsg('Nessuna risposta del server.');
-        } else if (error === 409) {
-            setErrMsg('E-mail già in uso.');
-        } else {
-            setErrMsg('Registrazione non riuscita.')
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(utente)
+            });
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`)
+            }        
+            setSuccess(true);
+            setUser('');
+            setEmail('');
+            setPwd('');
+            setMatchPwd('');
+        } 
+        catch (error) {
+            if (`${error}` === 'Error: 400 Bad Request') {
+                setErrMsg(`${error} || E-mail già in uso`);
+            } else if (`${error}` === 'TypeError: Failed to fetch') {
+                setErrMsg(`${error} || Nessuna risposta del server`);
+            } else {
+                setErrMsg(`${error} || Registrazione non riuscita`)
+            }
+            errRef.current?.focus();
         }
-        errRef.current?.focus();
-    }
-
-
 
     }
 
