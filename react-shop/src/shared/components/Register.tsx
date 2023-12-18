@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import './Register.css';
-import { UrlBase } from "..";
-import { useRegister } from "./useRegister";
+import './Popup.css';
+import { UrlBase, useRegister } from "..";
 import { UtenteRegister } from "../../model";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -11,7 +10,7 @@ const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
-    const { close } = useRegister()
+    const { closeRegister } = useRegister()
     const userRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
@@ -114,7 +113,7 @@ const Register = () => {
             <section className="popup">
                 <div className="popup-inner">
                     <div className="d-flex justify-content-end">
-                        <button type="button" className="btn-close" onClick={close}></button>
+                        <button type="button" className="btn-close" onClick={closeRegister}></button>
                     </div>
                     <div className="text-center text-muted">
                         <h6>Registrazione effettuata correttamente!</h6>
@@ -130,7 +129,7 @@ const Register = () => {
 
                         <div className="d-grid gap-2 d-md-flex justify-content-md-between">
                             <h2>Registrazione</h2>
-                            <button type="button" className="btn-close" onClick={close}></button>
+                            <button type="button" className="btn-close" onClick={closeRegister}></button>
                         </div>
 
                         <form onSubmit={handleSubmit}>
