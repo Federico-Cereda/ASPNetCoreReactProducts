@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink } from 'react-router-dom';
-import { useRegister } from '..';
+import { useLogin, useRegister } from '..';
 
 export function Header() {
     const { openRegister } = useRegister()
+    const { openLogin } = useLogin()
 
     return (
         <header className="p-3 text-bg-dark">
@@ -26,6 +27,10 @@ export function Header() {
 
                     <button onClick={openRegister} className="btn btn-outline-light me-2">
                         Registrati
+                    </button>
+
+                    <button onClick={openLogin} className="btn btn-warning">
+                        Accedi
                     </button>
                     
                 </div>

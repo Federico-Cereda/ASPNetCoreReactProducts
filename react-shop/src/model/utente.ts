@@ -4,3 +4,8 @@ export interface UtenteRegister {
     password: string;
     idRuolo: number;
 }
+
+export interface UtenteLogin {
+    email:  string;
+    password: string;
+}
