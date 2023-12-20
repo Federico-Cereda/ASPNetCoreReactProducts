@@ -1,15 +1,14 @@
 // import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Footer, Header } from './shared'
+import { Footer, Header, Login, Register, useLogin, useRegister } from './shared'
 import Home from './pages/home/HomePage'
 import ProdottiPage from './pages/prodotto/ProdottiPage'
 import MarchePage from './pages/marca/MarchePage'
 import PromozioniPage from './pages/promozione/PromozioniPage'
-import Register from './shared/components/Register'
-import { useRegister } from './shared/components/useRegister'
 
 function App() {
-  const { isOpen } = useRegister()
+  const { isOpenRegister } = useRegister()
+  const { isOpenLogin } = useLogin()
 
   return (
 
@@ -27,7 +26,9 @@ function App() {
       </Routes>
     </div>
     
-    { isOpen && <Register /> }
+    { isOpenRegister && <Register /> }
+
+    { isOpenLogin && <Login /> }
 
     <Footer />
 

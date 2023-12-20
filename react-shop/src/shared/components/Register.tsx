@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import './Register.css';
-import { UrlBase } from "..";
-import { useRegister } from "./useRegister";
+import { UrlBase, useLogin, useRegister } from "..";
 import { UtenteRegister } from "../../model";
+import './Popup.css';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
-    const { close } = useRegister()
+    const { closeRegister } = useRegister()
+    const { openLogin } = useLogin()
+
     const userRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
@@ -32,15 +33,15 @@ const Register = () => {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const[errMsg, setErrMsg] = useState('');
-    const[success, setSuccess] = useState(false);
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
     
     useEffect(() => {
-        userRef.current?.focus();
+        emailRef.current?.focus();
     }, [])
 
     useEffect(() => {
-        emailRef.current?.focus();
+        userRef.current?.focus();
     }, [])
 
     useEffect(() => {
@@ -89,40 +90,39 @@ const Register = () => {
             if (!response.ok) {
                 throw new Error(`${response.status} ${response.statusText}`)
             }        
-            setSuccess(true);
             setUser('');
             setEmail('');
             setPwd('');
             setMatchPwd('');
+            setSuccess(true);
         } 
         catch (error) {
             if (`${error}` === 'Error: 400 Bad Request') {
                 setErrMsg(`${error} || E-mail già in uso`);
             } else if (`${error}` === 'TypeError: Failed to fetch') {
-                setErrMsg(`${error} || Nessuna risposta del server`);
+                setErrMsg(`${error} || Nessuna risposta dal server`);
             } else {
                 setErrMsg(`${error} || Registrazione non riuscita`)
             }
             errRef.current?.focus();
         }
-
     }
 
     return (
         <>
-        {success ? (
-            <section className="popup">
-                <div className="popup-inner">
-                    <div className="d-flex justify-content-end">
-                        <button type="button" className="btn-close" onClick={close}></button>
+            { success ? (
+                <section className="popup">
+                    <div className="popup-inner">
+                        <div className="d-flex justify-content-end">
+                            <button type="button" className="btn-close" onClick={closeRegister}></button>
+                        </div>
+                        <div className="text-center text-muted">
+                            <h6>Registrazione effettuata correttamente!</h6>
+                            <a className="fw-bold text-body ms-1" onClick={() => { closeRegister(); openLogin(); }} style={{cursor: "pointer"}}>Accedi</a>
+                        </div>
                     </div>
-                    <div className="text-center text-muted">
-                        <h6>Registrazione effettuata correttamente!</h6>
-                        <a href="#" className="fw-bold text-body ms-1">Accedi</a>
-                    </div>
-                </div>
-            </section>
-        ) : (
+                </section>
+            ) : (
                 <section className="popup">
                     <div className="popup-inner">
 
@@ -130,7 +130,7 @@ const Register = () => {
 
                         <div className="d-grid gap-2 d-md-flex justify-content-md-between">
                             <h2>Registrazione</h2>
-                            <button type="button" className="btn-close" onClick={close}></button>
+                            <button type="button" className="btn-close" onClick={closeRegister}></button>
                         </div>
 
                         <form onSubmit={handleSubmit}>
@@ -142,7 +142,7 @@ const Register = () => {
                                         <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                                         <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
                                     </h6>
-                                </label> <br />
+                                </label>
                                 <input 
                                     type="text" 
                                     id="username" 
@@ -172,7 +172,7 @@ const Register = () => {
                                         <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
                                         <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
                                     </h6>
-                                </label> <br />
+                                </label>
                                 <input 
                                     type="text" 
                                     id="email" 
@@ -202,7 +202,7 @@ const Register = () => {
                                         <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
                                         <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
                                     </h6>
-                                </label> <br />
+                                </label>
                                 <input 
                                     type="password" 
                                     id="password" 
@@ -230,7 +230,7 @@ const Register = () => {
                                         <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
                                         <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
                                     </h6>
-                                </label> <br />
+                                </label>
                                 <input 
                                     type="password" 
                                     id="confirm_pwd" 
@@ -258,7 +258,7 @@ const Register = () => {
 
                         <p className="text-center text-muted">
                             Sei già registrato?
-                            <a href="#" className="fw-bold text-body ms-1">Accedi</a>
+                            <a className="fw-bold text-body ms-1" onClick={() => { closeRegister(); openLogin(); }} style={{cursor: "pointer"}}>Accedi</a>
                         </p>
 
                     </div>
