@@ -89,7 +89,7 @@ const Register = () => {
             });
             if (!response.ok) {
                 throw new Error(`${response.status} ${response.statusText}`)
-            }        
+            };
             setUser('');
             setEmail('');
             setPwd('');
