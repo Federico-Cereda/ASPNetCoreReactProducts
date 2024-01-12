@@ -2,6 +2,10 @@
 using aspnetserver.Resources;
 using aspnetserver.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace aspnetserver.Services
 {
@@ -10,11 +14,13 @@ namespace aspnetserver.Services
         private readonly CarrelloSpesaContext _context;
         private readonly string _pepper;
         private readonly int _iteration = 3;
+        private readonly IConfiguration _config;
 
-        public UtenteService(CarrelloSpesaContext context)
+        public UtenteService(CarrelloSpesaContext context, IConfiguration config)
         {
             _context = context;
             _pepper = Environment.GetEnvironmentVariable("Pepper");
+            _config = config;
         }
 
         public async Task<UtenteResource> Register(RegisterResource resource)
@@ -42,6 +48,27 @@ namespace aspnetserver.Services
             if(utente.PasswordHash != passwordHash) throw new Exception("Email or password did not match.");
 
             return new UtenteResource(utente.Id, utente.Username, utente.Email,utente.IdRuolo);
+        }
+
+        public string GenerateToken(UtenteResource user)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Username),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.IdRuolo.ToString())
+            };
+
+            var token = new JwtSecurityToken(_config["JwtSettings:Issuer"],
+                _config["JwtSettings:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(15),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

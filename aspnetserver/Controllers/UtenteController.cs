@@ -1,10 +1,12 @@
 ﻿using aspnetserver.Resources;
 using aspnetserver.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetserver.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UtenteController : ControllerBase
@@ -30,13 +32,15 @@ namespace aspnetserver.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginResource resource)
         {
             try
             {
                 var response = await _utenteService.Login(resource);
-                return Ok(response);
+                var token = _utenteService.GenerateToken(response);
+                return Ok(token);
             }
             catch (Exception e)
             {
