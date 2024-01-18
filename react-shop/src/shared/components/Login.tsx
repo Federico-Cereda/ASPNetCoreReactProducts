@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { UrlBase, useLogin, useRegister } from '..';
-import { UtenteLogin } from '../../model';
-// import AuthContext from '../context/AuthProvider';
-// import { useContext } from 'react';
+import { AuthContextType, UtenteLogin } from '../../model';
+import AuthContext from '../context/AuthProvider';
 import './Popup.css';
 
 const Login = () => {
     const { closeLogin } = useLogin()
     const { openRegister } = useRegister()
 
-    // const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useContext(AuthContext) as AuthContextType;
 
     const emailRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
@@ -46,11 +45,10 @@ const Login = () => {
             if (!response.ok) {
                 throw new Error(`${response.status} ${response.statusText}`)
             };
-            // const responseUtente = await response.json();
-            // console.log(responseUtente)
-            // const accessToken = response?.data?.accessToken;
-            // const idRuolo = response?.data?.idRuolo;
-            // setAuth({ email, pwd, idRuolo, accessToken })
+            const result = await response.json();
+            const accessToken = result.accessToken;
+            const idRuolo = result.idRuolo;
+            setAuth({ email, pwd, idRuolo, accessToken })
             setEmail('');
             setPwd('');
             setSuccess(true);

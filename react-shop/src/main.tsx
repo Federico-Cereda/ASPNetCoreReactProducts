@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AuthProvider>
+    <AuthProvider email={null} pwd={null} idRuolo={null} accessToken={null}>
       <App />
     </AuthProvider>
   </React.StrictMode>,

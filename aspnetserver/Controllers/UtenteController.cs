@@ -40,7 +40,8 @@ namespace aspnetserver.Controllers
             {
                 var response = await _utenteService.Login(resource);
                 var token = _utenteService.GenerateToken(response);
-                return Ok(token);
+
+                return Ok(new AccessTokenResource(token, response.IdRuolo));
             }
             catch (Exception e)
             {
