@@ -6,6 +6,5 @@ namespace aspnetserver.Services
     {
         Task<UtenteResource> Register(RegisterResource resource);
         Task<UtenteResource> Login(LoginResource resource);
-        string GenerateToken(UtenteResource user);
     }
 }

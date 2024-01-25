@@ -23,6 +23,8 @@ public sealed partial class CarrelloSpesaContext : DbContext
 
     public DbSet<Utente> Utente { get; set; }
 
+    public DbSet<Token> Token { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=tcp:eudbs-sql.database.windows.net,1433;Initial Catalog=CarrelloSpesa;Persist Security Info=False;User ID=azureuser;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
@@ -75,6 +77,17 @@ public sealed partial class CarrelloSpesaContext : DbContext
 
             entity.Property(e => e.Username).HasMaxLength(50);
             entity.Property(e => e.Email).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Token>(entity =>
+        {
+            entity.HasKey(e => e.AccessToken).HasName("PK_dbo.Token");
+
+            entity.ToTable("Token");
+
+            entity.Property(e => e.AccessToken).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.RefreshToken).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.Expiration).HasColumnType("datetime2");
         });
 
         OnModelCreatingPartial(modelBuilder);

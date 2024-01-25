@@ -56,6 +56,7 @@ builder.Services.AddScoped<IMarcaService, MarcaService>();
 builder.Services.AddScoped<IPromozioneRepository, PromozioneRepository>();
 builder.Services.AddScoped<IPromozioneService, PromozioneService>();
 builder.Services.AddScoped<IUtenteService, UtenteService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 

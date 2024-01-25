@@ -8,6 +8,5 @@
         public string PasswordSalt { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
         public int IdRuolo { get; set; }
-
     }
 }

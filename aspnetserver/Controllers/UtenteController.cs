@@ -1,4 +1,5 @@
-﻿using aspnetserver.Resources;
+﻿using aspnetserver.Models;
+using aspnetserver.Resources;
 using aspnetserver.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,10 +13,12 @@ namespace aspnetserver.Controllers
     public class UtenteController : ControllerBase
     {
         private readonly IUtenteService _utenteService;
+        private readonly ITokenService _tokenService;
 
-        public UtenteController(IUtenteService utenteService)
+        public UtenteController(IUtenteService utenteService, ITokenService tokenService)
         {
             _utenteService = utenteService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("Register")]
@@ -39,9 +42,15 @@ namespace aspnetserver.Controllers
             try
             {
                 var response = await _utenteService.Login(resource);
-                var token = _utenteService.GenerateToken(response);
+                var result = _tokenService.GenerateToken(response);
+                var token = new Token
+                {
+                    AccessToken = result.Result.AccessToken,
+                    RefreshToken = result.Result.RefreshToken,
+                    Expiration = result.Result.Expiration
+                };
 
-                return Ok(new AccessTokenResource(token, response.IdRuolo));
+                return Ok(new LoginResponseResource(token, response.IdRuolo));
             }
             catch (Exception e)
             {
