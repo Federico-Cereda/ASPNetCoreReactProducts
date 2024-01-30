@@ -1,14 +1,18 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { UrlBase, useLogin, useRegister } from '..';
+import { useEffect, useRef, useState } from 'react';
+import { UrlBase, useAuth, useLogin, useRegister } from '..';
 import { AuthContextType, UtenteLogin } from '../../model';
-import AuthContext from '../context/AuthProvider';
 import './Popup.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { closeLogin } = useLogin()
     const { openRegister } = useRegister()
 
-    const { setAuth } = useContext(AuthContext) as AuthContextType;
+    const { setAuth } = useAuth() as AuthContextType;
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const emailRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
@@ -16,7 +20,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         emailRef.current?.focus();
@@ -51,7 +54,8 @@ const Login = () => {
             setAuth({ email, pwd, idRuolo, accessToken })
             setEmail('');
             setPwd('');
-            setSuccess(true);
+            closeLogin();
+            navigate(from, { replace: true });
         } catch (error) {
             console.log(error);
             if (`${error}` === 'Error: 400 Bad Request') {
@@ -66,77 +70,61 @@ const Login = () => {
     }
 
     return (
-        <>
-            { success ? (
-                <section className="popup">
-                    <div className="popup-inner">
-                        <div className="d-flex justify-content-end">
-                            <button type="button" className="btn-close" onClick={closeLogin}></button>
-                        </div>
-                        <div className="text-center text-muted">
-                            <h6>Accesso effettuato correttamente!</h6>
-                            <a href="/" className="fw-bold text-body ms-1">Home</a>
-                        </div>
+            <section className="popup">
+                <div className="popup-inner">
+
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-between">
+                        <h2>Accedi</h2>
+                        <button type="button" className="btn-close" onClick={closeLogin}></button>
                     </div>
-                </section>
-            ) : (
-                <section className="popup">
-                    <div className="popup-inner">
 
-                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <form onSubmit={handleSubmit}>
 
-                        <div className="d-grid gap-2 d-md-flex justify-content-md-between">
-                            <h2>Accedi</h2>
-                            <button type="button" className="btn-close" onClick={closeLogin}></button>
+                        <div className="form-group mt-3">
+                            <label htmlFor="email">
+                                <h6>E-mail</h6>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="email" 
+                                ref={emailRef} 
+                                autoComplete="off" 
+                                onChange={(e) => setEmail(e.target.value)} 
+                                value={email} 
+                                required 
+                                className="form-control"
+                            />
                         </div>
 
-                        <form onSubmit={handleSubmit}>
+                        <div className="form-group mt-3">
+                            <label htmlFor="password">
+                                <h6>Password</h6>
+                            </label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                onChange={(e) => setPwd(e.target.value)} 
+                                value={pwd} 
+                                required 
+                                className="form-control"
+                            />
+                        </div>
 
-                            <div className="form-group mt-3">
-                                <label htmlFor="email">
-                                    <h6>E-mail</h6>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="email" 
-                                    ref={emailRef} 
-                                    autoComplete="off" 
-                                    onChange={(e) => setEmail(e.target.value)} 
-                                    value={email} 
-                                    required 
-                                    className="form-control"
-                                />
-                            </div>
+                        <div className="d-grid gap-2 col-6 mx-auto my-3">
+                            <button className="btn btn-primary">Accedi</button>
+                        </div>
 
-                            <div className="form-group mt-3">
-                                <label htmlFor="password">
-                                    <h6>Password</h6>
-                                </label>
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    onChange={(e) => setPwd(e.target.value)} 
-                                    value={pwd} 
-                                    required 
-                                    className="form-control"
-                                />
-                            </div>
+                    </form>
 
-                            <div className="d-grid gap-2 col-6 mx-auto my-3">
-                                <button className="btn btn-primary">Accedi</button>
-                            </div>
+                    <p className="text-center text-muted">
+                        Non sei registrato?
+                        <a className="fw-bold text-body ms-1" onClick={() => { closeLogin(); openRegister(); }} style={{cursor: "pointer"}}>Registrati</a>
+                    </p>
 
-                        </form>
-
-                        <p className="text-center text-muted">
-                            Non sei registrato?
-                            <a className="fw-bold text-body ms-1" onClick={() => { closeLogin(); openRegister(); }} style={{cursor: "pointer"}}>Registrati</a>
-                        </p>
-
-                    </div>
-                </section>
-            )}
-        </>
+                </div>
+            </section>
     )
 }
 

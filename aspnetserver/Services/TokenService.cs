@@ -62,7 +62,7 @@ namespace aspnetserver.Services
 
         public async Task<Token> RefreshToken(Token token)
         {
-            if (token.Expiration < DateTime.Now)
+            if (token.Expiration > DateTime.Now)
             {
                 var response = await _context.Token.AsNoTracking().FirstOrDefaultAsync(x => x.AccessToken == token.AccessToken);
                 if (response == null) throw new Exception("Invalid token.");
@@ -73,6 +73,9 @@ namespace aspnetserver.Services
                 
                 _context.Token.Update(token);
                 await _context.SaveChangesAsync();
+            } else
+            {
+                throw new Exception("Refresh token expired.");
             }
 
             return token;
